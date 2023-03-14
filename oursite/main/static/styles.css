@@ -84,28 +84,6 @@ body {
     margin-left: 5px;
  }
 
-/* .sidenav {
-    height: 160px;
-    width:100%;
-    position: fixed;
-    z-index: 1;
-    top:0;
-    left:0;
-    background-color: #000910;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-.sidenav a {
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: inline;
-
-}
-.sidenav a:hover {
-    color: #ffd48a;
-} */
 .main {
     margin-left: 160px;
     padding: 0px 10px;
