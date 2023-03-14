@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"> 
+<head>
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- External static css -->
+    <link rel="stylesheet" href="{% static 'styles.css'%}" />
+    <link rel="Favicon" type="ico" href="/img/favicon.ico" />
+
+    <title>{%block title%}TA application website{%endblock%}</title>
+</head>
+<body> 
+    <!-- <div class="sidenav">
+        <a href="/">Home</a>
+        <a href="/create">Create</a>
+        <a href="/1">View First</a>
+    </div> -->
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="logo-image">
+            <img src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png" class="img-fluid">    
+        </div>
+        <div class="nav-header">
+          <div class="nav-title">
+            EagleHire
+          </div>
+        </div>
+          
+        <div class="nav-links">
+            <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Sign-Up</a></li>
+          <li><a href="/">Login</a></li> 
+            </ul>
+        </div>
+      </div>
+
+
+
+    <div id="content", name="content", class="main">
+        <div class="row justify-content-center"> 
+            <div class="col-8 text-light">
+                <h1 class="mt-2">Welcome!</h1>
+                <hr class="mt-0 mb-4">
+                {%block content%}
+                {%endblock%}
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>
