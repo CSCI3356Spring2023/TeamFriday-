@@ -3,20 +3,83 @@
 {%block title%}Home{%endblock%}
 
 {%block content%}
-<h3><center>Student Sign Up!</center></h3>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Sign Up!</title>
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.form-element {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 10px;
+			line-height: 2;
+			text-align: left;
+		}
+
+		input[type="text"] {
+			text-align: left;
+		}
+	</style>
+</head>
 <body>
-<form>
-  Name
-  <input type: "text">
-  <form>
-  <label for="Major">Major:</label>
-  <select id="Major" name="Major">
-    <option value="Computer Science">Computer Science</option>
-    <option value="Finance">Finance</option>
-    <option value="Music" selected>Music</option>
-    <option value="Biology">Biology</option>
-  </select>
-  </form>
-  </form>
-  </body>
+	<div class="container">
+		<h1>Student Sign Up!</h1>
+
+		<form class="form-element">
+			<label for="name">Name</label>
+			<input type="text" id="name">
+		</form>
+
+		<form class="form-element">
+			<label for="major">Major</label>
+			<select id="major" name="major">
+				<option value="Computer Science">Computer Science</option>
+				<option value="Finance">Finance</option>
+				<option value="Music" selected>Music</option>
+				<option value="Biology">Biology</option>
+			</select>
+
+			<label for="minor">Minor</label>
+			<select id="minor" name="minor">
+				<option value="Computer Science">Computer Science</option>
+				<option value="Finance">Finance</option>
+				<option value="Music" selected>Music</option>
+				<option value="Biology">Biology</option>
+			</select>
+
+			<label for="year">Year</label>
+			<select id="year" name="year">
+				<option value="Freshman">Freshman</option>
+				<option value="Sophomore">Sophomore</option>
+				<option value="Junior" selected>Junior</option>
+				<option value="Senior">Senior</option>
+			</select>
+		</form>
+
+		<form class="form-element">
+			<label for="eagle-id">Eagle ID</label>
+			<input type="text" id="eagle-id">
+		</form>
+
+		<form class="form-element">
+			<label for="email">Email</label>
+			<input type="text" id="email">
+		</form>
+
+		<form class="form-element">
+			<label for="password">Password</label>
+			<input type="text" id="password">
+		</form>
+	</div>
+</body>
+</html>
+
+
 {%endblock%}
