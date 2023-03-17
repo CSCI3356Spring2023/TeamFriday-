@@ -6,6 +6,10 @@ from django.views.generic.base import RedirectView
 
 # Create your views here.
 def home(response):
+
+    # New branch who dis?
+
+
     return render(response, 'main/home.html', {})
 
 
