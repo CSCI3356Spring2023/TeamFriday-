@@ -13,7 +13,7 @@ To keep track of our changes and avoid "pushing to main", we can use sepearte br
 - In an open terminal in the working directory of the project, type 'git pull' to pull new changes, then 'git checkout [your branch name]'.
 - Now when you type 'git status' your branch should be collected and you can push your changes with no worries.
 
-## Some Git tips
+## Some Git review/tips
 - It's a good rule of thumb to keep note of your current branch and if you are ahead/behind the branch before doing anything.
 - "git pull" updates your current repo with new changes depending on your selected branch. Good to do this before making changes.
 
@@ -24,15 +24,19 @@ Will be used often to update your branch:
 
 ## Running the server
 
-In the ./oursite directory run ```python manage.py runserver```
+In the ./oursite directory run ```python manage.py runserver```.
+
+## Migrations
+If you make any changes to data models or anything db related, In the ./oursite directory run ```python manage.py makemigrations```.
+Then you can migrate by running ``python manage.py migrate```.
 
 ## CSS
 
-Our styles.css file is located in `./oursite/main/static/`
+Our styles.css file is located in `./oursite/main/static/`.
 
 ## HTML
 
-Our main templates are located in `./oursite/main/templates/main`
+Our main templates are located in `./oursite/main/templates/main`.
 
 ## Notes
 At the moment we only have a main app to render some styled templates, but we will add more apps to handle user registration and crud fuctionality for this delivery.
