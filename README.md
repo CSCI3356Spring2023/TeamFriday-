@@ -11,7 +11,7 @@ To keep track of our changes and avoid "pushing to main", we can use sepearte br
 - On the main repo page, select the branch dropdown and press 'view all branches'.
 - Next select 'create new branch' and give it a name of your choosing.
 - In an open terminal in the working directory of the project, type 'git pull' to pull new changes, then 'git checkout [your branch name]'.
-- Now when you type 'git status' your branch should be collected and you can push your changes with no worries.
+- Now when you type 'git status' your branch should be selected and you can push your changes with no worries.
 
 ## Some Git review/tips
 - It's a good rule of thumb to keep note of your current branch and if you are ahead/behind the branch before doing anything.
