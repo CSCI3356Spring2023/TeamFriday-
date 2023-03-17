@@ -7,3 +7,6 @@ from django.views.generic.base import RedirectView
 # Create your views here.
 def home(response):
     return render(response, 'main/home.html', {})
+
+
+#Changes
