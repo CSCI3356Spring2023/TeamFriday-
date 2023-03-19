@@ -8,5 +8,12 @@ from django.views.generic.base import RedirectView
 def home(response):
     return render(response, 'main/home.html', {})
 
+# StudentSignupView
 
-#Changes
+# CreateCourseView
+
+# CreateApplicationView
+
+# InstructorSignupView
+
+

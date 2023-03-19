@@ -15,3 +15,24 @@ from django.db import models
 # .......
 #  ....
 # ....
+
+
+## Instructor profile model:
+# Class Instructor(models.model):
+#.......
+
+
+
+## Course data model
+#create fields for all relevant course info
+
+# Class Course(models.model):
+#.....
+
+
+
+## Application data model
+# create fields for all relevant application info
+
+# Class Application(models.model):
+#.......
