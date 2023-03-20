@@ -34,5 +34,11 @@ from django.db import models
 ## Application data model
 # create fields for all relevant application info
 
-# Class Application(models.model):
-#.......
+class Application(models.model):
+
+    course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
+    experience = models.BooleanField(default=False) # Have you taken this course before?
+    professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
+    semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
+    #resume = #file upload
+    cover_letter = models.CharField(max_length=400)
