@@ -41,4 +41,4 @@ class Application(models.model):
     professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
     semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
     #resume = #file upload
-    cover_letter = models.CharField(max_length=400)
+    cover_letter = models.CharField(max_length=400) # I want to write a function that checks 400 words, not 400 characters!
