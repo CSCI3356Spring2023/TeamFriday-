@@ -87,6 +87,9 @@ class Application(models.Model):
     #resume = #file upload
     cover_letter = models.CharField(max_length=(word_counter())>=400) # I want to write a function that checks 400 words, not 400 characters!
 
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
+
 
 
 class addCourse(models.Model):
@@ -105,8 +108,5 @@ class addCourse(models.Model):
 
         # renames the instances of the model
         # with their title name
-    def __str__(self):
-        return self.title
-
     def __str__(self):
         return self.firstname + ' ' + self.lastname
