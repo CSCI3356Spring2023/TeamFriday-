@@ -2,7 +2,7 @@
 
 ## To run the rpo
 
-After cloning go into the `/TeamFriday-/oursite/` directory and make sure to: ```pip install django-crispy-forms``` [(docs)](https://django-crispy-forms.readthedocs.io/en/latest/install.html),``` pip install django-multiselectfield``` otherwise you will run into an error when running the server.
+After cloning go into the `/TeamFriday-/oursite/` directory and make sure to: ```pip install django-crispy-forms``` [(docs)](https://django-crispy-forms.readthedocs.io/en/latest/install.html),``` pip install django-multiselectfield```[(docs)](https://pypi.org/project/django-multiselectfield/) otherwise you will run into an error when running the server.
 
 ## Some Git review/tips
 - It's a good rule of thumb to keep note of your current branch and if you are ahead/behind the branch before doing anything.
