@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -81,12 +82,9 @@ class Course(models.Model):
 		('W', 'Wednesday'),
 		('TH', 'Thursday'),
 		('F', 'Friday'),
-		('M/W/F', 'Monday/Wednesday/Friday'),
-		('T/TH', 'Tuesday/Thursday'),
-		('M/W', 'Monday/Wednesday'),
 	)
 
-	courseDate = models.CharField(max_length=50, choices=DAYS_CHOICES)
+	courseDate = MultiSelectField(max_length=50, choices=DAYS_CHOICES)
 
 	courseStartTime = models.TimeField()
 	courseEndTime = models.TimeField()
