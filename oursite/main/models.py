@@ -7,6 +7,7 @@ from multiselectfield import MultiSelectField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from multiselectfield import MultiSelectField
 # Create your models here.
 
 
@@ -116,11 +117,34 @@ class Application(models.Model):
         return self.firstname + ' ' + self.lastname
 
 
-DATE_CHOICES = [
-    ('MONDAY','Monday'),
+
+class addCourse(models.Model):
+
+    DATE_CHOICES = (('MONDAY','Monday'),
     ('TUESDAY','Tuesday'),
     ('WEDNESDAY','Wednesday'),
     ('THURSDAY','Thursday'),
+<<<<<<< HEAD
+    ('FRIDAY','Friday'))
+    
+    # fields of the model
+    courseName = models.TextField()
+    courseNumber = models.CharField(max_length=8)
+    courseSection = models.CharField(max_length=2)
+    startTime = models.TimeField() 
+    endTime = models.TimeField()
+    # want to select from a list but idk how to do that lol 
+    date = MultiSelectField(choices=DAYS) # idk how to do list so rn format is like type M/W/F or T/TH
+    discussionBool = models.BooleanField()
+    discussionSection = models.CharField(max_length=12) # dropdown
+    officeHours = models.CharField(max_length=2) #dropdown?
+    gradedInOfficeHrs = models.BooleanField()
+
+        # renames the instances of the model
+        # with their title name
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
+=======
     ('FRIDAY','Friday'),
     ('M/W/F','m/w/f'),
     ('M/W','m/w'),
@@ -145,3 +169,4 @@ DATE_CHOICES = [
 #         # with their title name
 #     def __str__(self):
 #         return self.firstname + ' ' + self.lastname
+>>>>>>> aa5af773ac8bc203c321975498c04f9ae9016a6f

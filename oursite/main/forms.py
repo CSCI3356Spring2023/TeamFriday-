@@ -108,6 +108,18 @@ class AdminSignUpForm(UserCreationForm):
         return user
 
 class addCourseForm(forms.Form):
+<<<<<<< HEAD
+    courseName = forms.charField(label='Course Name')
+    courseNumber = forms.CharField(label='Course Number', max_length=8)
+    courseSection = forms.CharField(label='Course Section',max_length=2)
+    startTime = forms.TimeField(label='Start time') 
+    endTime = forms.TimeField(label='End time')
+    date = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=DAYS, label='Days of course')
+    discussionBool = forms.BooleanField(required=False,label='Does this course have a discussion section?')
+    discussionSection = forms.CharField(max_length=12,required=False,label='Discussion section') # dropdown
+    officeHours = forms.CharField(max_length=2,label='Required office hours per week') #dropdown?
+    gradedInOfficeHrs = forms.BooleanField(label='Homework/assignments graded in meetings?')
+=======
     courseName = forms.CharField()
     courseNumber = forms.CharField(label="Number", max_length=8)
     courseSection = forms.CharField(label="Section",max_length=2)
@@ -121,3 +133,4 @@ class addCourseForm(forms.Form):
     discussionSection = forms.CharField(max_length=12,required=False) # dropdown
     officeHours = forms.CharField(max_length=2) #dropdown?
     gradedInOfficeHrs = forms.BooleanField()
+>>>>>>> aa5af773ac8bc203c321975498c04f9ae9016a6f
