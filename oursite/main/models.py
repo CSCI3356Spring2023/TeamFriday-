@@ -70,3 +70,25 @@ class Application(models.model):
     semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
     #resume = #file upload
     cover_letter = models.CharField(max_length=400) # I want to write a function that checks 400 words, not 400 characters!
+
+
+
+class addCourse(models.Model):
+        # fields of the model
+    courseName = models.TextField()
+    courseNumber = models.CharField(max_length=8)
+    courseSection = models.CharField(max_length=2)
+    startTime = models.TimeField() 
+    endTime = models.TimeField()
+    # want to select from a list but idk how to do that lol 
+    date = models.CharField(max_length=8) # idk how to do list so rn format is like type M/W/F or T/TH
+    discussionBool = models.BooleanField()
+    discussionSection = models.CharField(max_length=12) # dropdown
+    officeHours = models.CharField(max_length=2) #dropdown?
+    gradedInOfficeHrs = models.BooleanField()
+
+        # renames the instances of the model
+        # with their title name
+    def __str__(self):
+        return self.title
+
