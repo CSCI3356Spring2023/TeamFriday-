@@ -14,7 +14,7 @@ from django.core.validators import RegexValidator
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
-    is_admin = models.BooleanField(defalse=False)
+    is_admin = models.BooleanField(default=False)
     email = models.EmailField(('Email Address'), unique=True)
 
     ##a user can have multiple accounts type
@@ -50,6 +50,16 @@ class Instructor(models.Model):
     def __str__(self):
         return self.firstname
 
+# Admin profle model
+class Admin(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    firstname = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
+    email = models.EmailField(max_length=40)
+    department = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
 
 
 ## Course data model
@@ -62,7 +72,7 @@ class Instructor(models.Model):
 ## Application data model
 # create fields for all relevant application info
 
-class Application(models.model):
+class Application(models.Model):
 
     course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
     experience = models.BooleanField(default=False) # Have you taken this course before?
