@@ -27,16 +27,13 @@ class UploadFileForm(forms.Form):
 
 
 class addCourseForm(forms.Form):
-    courseName = forms.TextField()
-    courseNumber = forms.CharField(label="Number", max_length=8)
-    courseSection = forms.CharField(label="Section",max_length=2)
-    startTime = forms.TimeField() 
-    endTime = forms.TimeField()
-    date = forms.CharField(         #hopefully selecting from list
-        max_length=8,
-        widget=forms.Select(choices=DATE_CHOICES),
-    )
-    discussionBool = forms.BooleanField(required=False)
-    discussionSection = forms.CharField(max_length=12,required=False) # dropdown
-    officeHours = forms.CharField(max_length=2) #dropdown?
-    gradedInOfficeHrs = forms.BooleanField()
+    courseName = forms.charField(label='Course Name')
+    courseNumber = forms.CharField(label='Course Number', max_length=8)
+    courseSection = forms.CharField(label='Course Section',max_length=2)
+    startTime = forms.TimeField(label='Start time') 
+    endTime = forms.TimeField(label='End time')
+    date = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=DAYS, label='Days of course')
+    discussionBool = forms.BooleanField(required=False,label='Does this course have a discussion section?')
+    discussionSection = forms.CharField(max_length=12,required=False,label='Discussion section') # dropdown
+    officeHours = forms.CharField(max_length=2,label='Required office hours per week') #dropdown?
+    gradedInOfficeHrs = forms.BooleanField(label='Homework/assignments graded in meetings?')

@@ -6,6 +6,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from multiselectfield import MultiSelectField
 # Create your models here.
 
 
@@ -67,7 +68,7 @@ class Admin(models.Model):
 ## Course data model
 #create fields for all relevant course info
 
-class Course(models.model):
+class Course(models.Model):
 
 	courseNumber = models.CharField(max_length=8)
 	courseName = models.CharField(max_length=100)
@@ -122,18 +123,15 @@ class Application(models.Model):
         return self.firstname + ' ' + self.lastname
 
 
-DATE_CHOICES = [
-    ('MONDAY','Monday'),
+
+class addCourse(models.Model):
+
+    DATE_CHOICES = (('MONDAY','Monday'),
     ('TUESDAY','Tuesday'),
     ('WEDNESDAY','Wednesday'),
     ('THURSDAY','Thursday'),
-    ('FRIDAY','Friday'),
-    ('M/W/F','m/w/f'),
-    ('M/W','m/w'),
-    ('T/TH','t/th'),
-]
-
-class addCourse(models.Model):
+    ('FRIDAY','Friday'))
+    
     # fields of the model
     courseName = models.TextField()
     courseNumber = models.CharField(max_length=8)
@@ -141,7 +139,7 @@ class addCourse(models.Model):
     startTime = models.TimeField() 
     endTime = models.TimeField()
     # want to select from a list but idk how to do that lol 
-    date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
+    date = MultiSelectField(choices=DAYS) # idk how to do list so rn format is like type M/W/F or T/TH
     discussionBool = models.BooleanField()
     discussionSection = models.CharField(max_length=12) # dropdown
     officeHours = models.CharField(max_length=2) #dropdown?
