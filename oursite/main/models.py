@@ -40,7 +40,7 @@ class Student(models.Model):
     graduation_year = models.CharField(max_length = 4,)
     def __str__(self):
         return self.firstname + ' ' + self.lastname
-    
+
 ## Instructor profile model:
 # Class Instructor(models.model):
 #.......
@@ -102,7 +102,7 @@ class Application(models.Model):
 
     def word_counter(string):
         return string.count(" ") + 1
-    
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
     # In our prototype, this was done as a dropdown, database accessed already
@@ -135,9 +135,9 @@ class addCourse(models.Model):
 #     courseName = models.TextField()
 #     courseNumber = models.CharField(max_length=8)
 #     courseSection = models.CharField(max_length=2)
-#     startTime = models.TimeField() 
+#     startTime = models.TimeField()
 #     endTime = models.TimeField()
-#     # want to select from a list but idk how to do that lol 
+#     # want to select from a list but idk how to do that lol
 #     date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
 #     discussionBool = models.BooleanField()
 #     discussionSection = models.CharField(max_length=12) # dropdown
