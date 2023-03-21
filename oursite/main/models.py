@@ -67,7 +67,7 @@ class Admin(models.Model):
 ## Course data model
 #create fields for all relevant course info
 
-class Course(models.model):
+class Course(models.Model):
 
 	courseNumber = models.CharField(max_length=8)
 	courseName = models.CharField(max_length=100)
