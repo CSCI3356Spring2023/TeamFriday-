@@ -67,9 +67,40 @@ class Admin(models.Model):
 ## Course data model
 #create fields for all relevant course info
 
-# Class Course(models.model):
-#.....
+class Course(models.model):
 
+	courseNumber = models.CharField(max_length=8)
+	courseName = models.CharField(max_length=100)
+	courseDescription = models.TextField()
+	courseSection = models.PositiveIntegerField()
+	courseInstructor = models.CharField(max_length=100)
+
+	# attempting to use multiselectfield
+
+	MONDAY = 'M'
+	TUESDAY = 'T'
+	WEDNESDAY = 'W'
+	THURSDAY = 'TH'
+	FRIDAY = 'F'
+	DAYS_CHOICES = (
+		(MONDAY, 'Monday'),
+		(TUESDAY, 'Tuesday'),
+		(WEDNESDAY, 'Wednesday'),
+		(THURSDAY, 'Thursday'),
+		(FRIDAY, 'Friday'),
+	)
+
+	courseDate = SelectMultipleField(max_length=10, choices=DAYS_CHOICES)
+
+	courseStartTime = models.TimeField()
+	courseEndTime = models.TimeField()
+	courseTANeeded = models.IntegerField()
+
+	courseMarkHW = models.BooleanField(default=false)
+	courseOfficeHours = models.PositiveIntegerField()
+
+	def __str__(self):
+		return self.firstname + ' ' + self.lastname
 
 ## Application data model
 class Application(models.Model):
@@ -85,7 +116,10 @@ class Application(models.Model):
     professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
     semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
     #resume = #file upload
-    cover_letter = models.CharField(max_length=400) # I want to write a function that checks 400 words, not 400 characters!
+    cover_letter = models.CharField(max_length=(word_counter())>=400) # I want to write a function that checks 400 words, not 400 characters!
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
 
 
 DATE_CHOICES = [
@@ -115,8 +149,5 @@ class addCourse(models.Model):
 
         # renames the instances of the model
         # with their title name
-    def __str__(self):
-        return self.title
-
     def __str__(self):
         return self.firstname + ' ' + self.lastname
