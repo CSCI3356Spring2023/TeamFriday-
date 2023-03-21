@@ -36,7 +36,8 @@ class Student(models.Model):
     available = models.BooleanField(default=True)
     graduation_year = models.CharField(max_length = 4,)
     def __str__(self):
-        return self.firstname
+        return self.firstname + ' ' + self.lastname
+    
 ## Instructor profile model:
 # Class Instructor(models.model):
 #.......
@@ -48,7 +49,7 @@ class Instructor(models.Model):
     position = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.firstname
+        return self.firstname + ' ' + self.lastname
 
 # Admin profle model
 class Admin(models.Model):
@@ -70,13 +71,16 @@ class Admin(models.Model):
 
 
 ## Application data model
-# create fields for all relevant application info
-
 class Application(models.Model):
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
+    # In our prototype, this was done as a dropdown, database accessed already
+
     experience = models.BooleanField(default=False) # Have you taken this course before?
     professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
     semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
     #resume = #file upload
     cover_letter = models.CharField(max_length=400) # I want to write a function that checks 400 words, not 400 characters!
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
