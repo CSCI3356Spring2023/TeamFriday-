@@ -75,22 +75,18 @@ class Course(models.Model):
 	courseSection = models.PositiveIntegerField()
 	courseInstructor = models.CharField(max_length=100)
 
-	# attempting to use multiselectfield
-
-	MONDAY = 'M'
-	TUESDAY = 'T'
-	WEDNESDAY = 'W'
-	THURSDAY = 'TH'
-	FRIDAY = 'F'
 	DAYS_CHOICES = (
 		(MONDAY, 'Monday'),
 		(TUESDAY, 'Tuesday'),
 		(WEDNESDAY, 'Wednesday'),
 		(THURSDAY, 'Thursday'),
 		(FRIDAY, 'Friday'),
+		(M/W/F, 'Monday/Wednesday/Friday'),
+		(T/TH, 'Tuesday/Thursday'),
+		(M/W, 'Monday/Wednesday'),
 	)
 
-	courseDate = SelectMultipleField(max_length=10, choices=DAYS_CHOICES)
+	courseDate = models.CharField(max_length=50, choices=DAYS_CHOICES)
 
 	courseStartTime = models.TimeField()
 	courseEndTime = models.TimeField()
