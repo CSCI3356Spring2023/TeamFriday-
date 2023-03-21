@@ -5,10 +5,8 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from .forms import UploadFileForm
-from .forms import ModelFormWithFileField
-from .forms import addCourse
-from .models import addCourse
+from .forms import UploadFileForm, addCourseForm
+from .models import Course
 from django.views.generic import CreateView
 
 # Imaginary function to handle an uploaded file.
@@ -52,7 +50,7 @@ def fp(response):
 
 # CreateCourseView
 class addCourse(CreateView):
-    model = addCourse
+    model = Course
     form_class = addCourseForm
     template_name = 'main/addcourse.html'
 
@@ -67,5 +65,10 @@ class addCourse(CreateView):
 # CreateApplicationView
 
 # InstructorSignupView
+
+# Student signup
+# Admin signup
+
+
 
 
