@@ -124,7 +124,6 @@ class addCourse(models.Model):
     ('TUESDAY','Tuesday'),
     ('WEDNESDAY','Wednesday'),
     ('THURSDAY','Thursday'),
-<<<<<<< HEAD
     ('FRIDAY','Friday'))
     
     # fields of the model
@@ -134,7 +133,7 @@ class addCourse(models.Model):
     startTime = models.TimeField() 
     endTime = models.TimeField()
     # want to select from a list but idk how to do that lol 
-    date = MultiSelectField(choices=DAYS) # idk how to do list so rn format is like type M/W/F or T/TH
+    date = MultiSelectField(choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
     discussionBool = models.BooleanField()
     discussionSection = models.CharField(max_length=12) # dropdown
     officeHours = models.CharField(max_length=2) #dropdown?
@@ -144,29 +143,3 @@ class addCourse(models.Model):
         # with their title name
     def __str__(self):
         return self.firstname + ' ' + self.lastname
-=======
-    ('FRIDAY','Friday'),
-    ('M/W/F','m/w/f'),
-    ('M/W','m/w'),
-    ('T/TH','t/th'),
-]
-
-# class addCourse(models.Model):
-#     # fields of the model
-#     courseName = models.TextField()
-#     courseNumber = models.CharField(max_length=8)
-#     courseSection = models.CharField(max_length=2)
-#     startTime = models.TimeField() 
-#     endTime = models.TimeField()
-#     # want to select from a list but idk how to do that lol 
-#     date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
-#     discussionBool = models.BooleanField()
-#     discussionSection = models.CharField(max_length=12) # dropdown
-#     officeHours = models.CharField(max_length=2) #dropdown?
-#     gradedInOfficeHrs = models.BooleanField()
-
-#         # renames the instances of the model
-#         # with their title name
-#     def __str__(self):
-#         return self.firstname + ' ' + self.lastname
->>>>>>> aa5af773ac8bc203c321975498c04f9ae9016a6f
