@@ -5,7 +5,6 @@ from django.db import transaction
 
 from models import User, Student, Instructor, Admin
 
-
 class StudentSignUpForm(UserCreationForm):
     FRESHMAN = 'FR'
     SOPHOMORE = 'SO'
