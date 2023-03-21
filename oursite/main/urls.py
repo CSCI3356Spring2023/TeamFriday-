@@ -4,6 +4,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("home/", views.home, name="home"),
+    path("", views.fp, name="front page"),
     # path("/addCourse",views.addCourse,name="addCourse"),
 ]

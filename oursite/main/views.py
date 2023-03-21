@@ -41,8 +41,9 @@ def upload_file(request):
 def home(response):
     return render(response, 'main/home.html', {})
 
+
 def fp(response):
-    return render(response, 'main/frontpage.html', {})
+    return render(response, 'main/fp.html', {})
 # StudentSignupView
 
 # CreateCourseView
