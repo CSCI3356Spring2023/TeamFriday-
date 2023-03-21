@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 
@@ -72,6 +73,10 @@ class Admin(models.Model):
 
 ## Application data model
 class Application(models.Model):
+
+    def word_counter(string):
+        return string.count(" ") + 1
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
     # In our prototype, this was done as a dropdown, database accessed already
