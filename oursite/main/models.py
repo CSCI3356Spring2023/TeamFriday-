@@ -76,14 +76,14 @@ class Course(models.Model):
 	courseInstructor = models.CharField(max_length=100)
 
 	DAYS_CHOICES = (
-		(MONDAY, 'Monday'),
-		(TUESDAY, 'Tuesday'),
-		(WEDNESDAY, 'Wednesday'),
-		(THURSDAY, 'Thursday'),
-		(FRIDAY, 'Friday'),
-		(M/W/F, 'Monday/Wednesday/Friday'),
-		(T/TH, 'Tuesday/Thursday'),
-		(M/W, 'Monday/Wednesday'),
+		('M', 'Monday'),
+		('T', 'Tuesday'),
+		('W', 'Wednesday'),
+		('TH', 'Thursday'),
+		('F', 'Friday'),
+		('M/W/F', 'Monday/Wednesday/Friday'),
+		('T/TH', 'Tuesday/Thursday'),
+		('M/W', 'Monday/Wednesday'),
 	)
 
 	courseDate = models.CharField(max_length=50, choices=DAYS_CHOICES)
@@ -129,21 +129,21 @@ DATE_CHOICES = [
     ('T/TH','t/th'),
 ]
 
-class addCourse(models.Model):
-    # fields of the model
-    courseName = models.TextField()
-    courseNumber = models.CharField(max_length=8)
-    courseSection = models.CharField(max_length=2)
-    startTime = models.TimeField() 
-    endTime = models.TimeField()
-    # want to select from a list but idk how to do that lol 
-    date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
-    discussionBool = models.BooleanField()
-    discussionSection = models.CharField(max_length=12) # dropdown
-    officeHours = models.CharField(max_length=2) #dropdown?
-    gradedInOfficeHrs = models.BooleanField()
+# class addCourse(models.Model):
+#     # fields of the model
+#     courseName = models.TextField()
+#     courseNumber = models.CharField(max_length=8)
+#     courseSection = models.CharField(max_length=2)
+#     startTime = models.TimeField() 
+#     endTime = models.TimeField()
+#     # want to select from a list but idk how to do that lol 
+#     date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
+#     discussionBool = models.BooleanField()
+#     discussionSection = models.CharField(max_length=12) # dropdown
+#     officeHours = models.CharField(max_length=2) #dropdown?
+#     gradedInOfficeHrs = models.BooleanField()
 
-        # renames the instances of the model
-        # with their title name
-    def __str__(self):
-        return self.firstname + ' ' + self.lastname
+#         # renames the instances of the model
+#         # with their title name
+#     def __str__(self):
+#         return self.firstname + ' ' + self.lastname

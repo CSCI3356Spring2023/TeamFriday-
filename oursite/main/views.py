@@ -6,7 +6,6 @@ from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
-from .forms import ModelFormWithFileField
 
 # Imaginary function to handle an uploaded file.
 # from somewhere import handle_uploaded_file

@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from .models import User, Student, Instructor, Admin
+from .models import User, Student, Instructor, Admin, Course
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=20)
@@ -108,14 +108,14 @@ class AdminSignUpForm(UserCreationForm):
         return user
 
 class addCourseForm(forms.Form):
-    courseName = forms.TextField()
+    courseName = forms.CharField()
     courseNumber = forms.CharField(label="Number", max_length=8)
     courseSection = forms.CharField(label="Section",max_length=2)
     startTime = forms.TimeField() 
     endTime = forms.TimeField()
     date = forms.CharField(         #hopefully selecting from list
         max_length=8,
-        widget=forms.Select(choices=DATE_CHOICES),
+        widget=forms.Select(choices=Course.DAYS_CHOICES),
     )
     discussionBool = forms.BooleanField(required=False)
     discussionSection = forms.CharField(max_length=12,required=False) # dropdown
