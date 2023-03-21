@@ -24,15 +24,18 @@ class UploadFileForm(forms.Form):
 # ...
 
 
-class addCourse(forms.Form):
-    courseName = models.TextField()
-    courseNumber = models.CharField(label="Number", max_length=8,required=True)
-    courseSection = models.CharField(label="Section",max_length=2,required=True)
-    startTime = models.TimeField(required=True) 
-    endTime = models.TimeField(required=True)
-    # want to select from a list but idk how to do that lol 
-    date = models.CharField(max_length=8, required=True) # idk how to do list so rn format is like type M/W/F or T/TH
-    discussionBool = models.BooleanField(required=False)
-    discussionSection = models.CharField(max_length=12,required=False) # dropdown
-    officeHours = models.CharField(max_length=2,required=True) #dropdown?
-    gradedInOfficeHrs = models.BooleanField(required=True)
+
+class addCourseForm(forms.Form):
+    courseName = forms.TextField()
+    courseNumber = forms.CharField(label="Number", max_length=8)
+    courseSection = forms.CharField(label="Section",max_length=2)
+    startTime = forms.TimeField() 
+    endTime = forms.TimeField()
+    date = forms.CharField(         #hopefully selecting from list
+        max_length=8,
+        widget=forms.Select(choices=DATE_CHOICES),
+    )
+    discussionBool = forms.BooleanField(required=False)
+    discussionSection = forms.CharField(max_length=12,required=False) # dropdown
+    officeHours = forms.CharField(max_length=2) #dropdown?
+    gradedInOfficeHrs = forms.BooleanField()

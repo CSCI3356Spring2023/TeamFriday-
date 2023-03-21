@@ -88,16 +88,26 @@ class Application(models.Model):
     cover_letter = models.CharField(max_length=400) # I want to write a function that checks 400 words, not 400 characters!
 
 
+DATE_CHOICES = [
+    ('MONDAY','Monday'),
+    ('TUESDAY','Tuesday'),
+    ('WEDNESDAY','Wednesday'),
+    ('THURSDAY','Thursday'),
+    ('FRIDAY','Friday'),
+    ('M/W/F','m/w/f'),
+    ('M/W','m/w'),
+    ('T/TH','t/th'),
+]
 
 class addCourse(models.Model):
-        # fields of the model
+    # fields of the model
     courseName = models.TextField()
     courseNumber = models.CharField(max_length=8)
     courseSection = models.CharField(max_length=2)
     startTime = models.TimeField() 
     endTime = models.TimeField()
     # want to select from a list but idk how to do that lol 
-    date = models.CharField(max_length=8) # idk how to do list so rn format is like type M/W/F or T/TH
+    date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
     discussionBool = models.BooleanField()
     discussionSection = models.CharField(max_length=12) # dropdown
     officeHours = models.CharField(max_length=2) #dropdown?
