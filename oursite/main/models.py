@@ -96,7 +96,7 @@ class Course(models.Model):
 	courseEndTime = models.TimeField()
 	courseTANeeded = models.IntegerField()
 
-	courseMarkHW = models.BooleanField(default=false)
+	courseMarkHW = models.BooleanField(default=False)
 	courseOfficeHours = models.PositiveIntegerField()
 
 	def __str__(self):
@@ -116,22 +116,32 @@ class Application(models.Model):
     professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
     semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
     #resume = #file upload
-    cover_letter = models.CharField(max_length=(word_counter())>=400) # I want to write a function that checks 400 words, not 400 characters!
+    #cover_letter = models.CharField(max_length=(word_counter())>=400) # I want to write a function that checks 400 words, not 400 characters!
 
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
 
+DATE_CHOICES = [
+    ('MONDAY','Monday'),
+    ('TUESDAY','Tuesday'),
+    ('WEDNESDAY','Wednesday'),
+    ('THURSDAY','Thursday'),
+    ('FRIDAY','Friday'),
+    ('M/W/F','m/w/f'),
+    ('M/W','m/w'),
+    ('T/TH','t/th'),
+]
 
 class addCourse(models.Model):
-        # fields of the model
+    # fields of the model
     courseName = models.TextField()
     courseNumber = models.CharField(max_length=8)
     courseSection = models.CharField(max_length=2)
     startTime = models.TimeField() 
     endTime = models.TimeField()
     # want to select from a list but idk how to do that lol 
-    date = models.CharField(max_length=8) # idk how to do list so rn format is like type M/W/F or T/TH
+    date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
     discussionBool = models.BooleanField()
     discussionSection = models.CharField(max_length=12) # dropdown
     officeHours = models.CharField(max_length=2) #dropdown?
