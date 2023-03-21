@@ -6,6 +6,13 @@ from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
+<<<<<<< HEAD
+from .forms import ModelFormWithFileField
+from .forms import addCourse
+from .models import addCourse
+from django.views.generic import CreateView
+=======
+>>>>>>> aa5af773ac8bc203c321975498c04f9ae9016a6f
 
 # Imaginary function to handle an uploaded file.
 # from somewhere import handle_uploaded_file
@@ -47,6 +54,18 @@ def fp(response):
 # StudentSignupView
 
 # CreateCourseView
+class addCourse(CreateView):
+    model = addCourse
+    form_class = addCourseForm
+    template_name = 'main/addcourse.html'
+
+    def form_valid(self,form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+
+        return redirect('/')
+
 
 # CreateApplicationView
 
