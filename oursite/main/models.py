@@ -127,7 +127,7 @@ class addCourse(models.Model):
     ('FRIDAY','Friday'),
     ('M/W/F','m/w/f'),
     ('M/W','m/w'),
-    ('T/TH','t/th'),
+    ('T/TH','t/th'))
 
 
 # class addCourse(models.Model):
