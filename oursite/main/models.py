@@ -69,39 +69,38 @@ class Admin(models.Model):
 
 class Course(models.model):
 
-        courseNumber = models.CharField(max_length=8)
-        courseName = models.CharField(max_length=100)
-        courseDescription = models.TextField()
-        courseSection = models.PositiveIntegerField()
-        courseInstructor = models.CharField(max_length=100)
+	courseNumber = models.CharField(max_length=8)
+	courseName = models.CharField(max_length=100)
+	courseDescription = models.TextField()
+	courseSection = models.PositiveIntegerField()
+	courseInstructor = models.CharField(max_length=100)
 
-        # attempting to use multiselectfield
+	# attempting to use multiselectfield
 
-        MONDAY = 'M'
-        TUESDAY = 'T'
-        WEDNESDAY = 'W'
-        THURSDAY = 'TH'
-        FRIDAY = 'F'
-        DAYS_CHOICES = (
-                (MONDAY, 'Monday'),
-                (TUESDAY, 'Tuesday'),
-                (WEDNESDAY, 'Wednesday'),
-                (THURSDAY, 'Thursday'),
-                (FRIDAY, 'Friday'),
-        )
+	MONDAY = 'M'
+	TUESDAY = 'T'
+	WEDNESDAY = 'W'
+	THURSDAY = 'TH'
+	FRIDAY = 'F'
+	DAYS_CHOICES = (
+		(MONDAY, 'Monday'),
+		(TUESDAY, 'Tuesday'),
+		(WEDNESDAY, 'Wednesday'),
+		(THURSDAY, 'Thursday'),
+		(FRIDAY, 'Friday'),
+	)
 
-        courseDate = SelectMultipleField(max_length=10, choices=DAYS_CHOICES)
+	courseDate = SelectMultipleField(max_length=10, choices=DAYS_CHOICES)
 
+	courseStartTime = models.TimeField()
+	courseEndTime = models.TimeField()
+	courseTANeeded = models.IntegerField()
 
-        courseStartTime = models.TimeField()
-        courseEndTime = models.TimeField()
-        courseTANeeded = models.IntegerField()
-
-        courseMarkHW = models.BooleanField(default=false)
-        courseOfficeHours = models.PositiveIntegerField()
+	courseMarkHW = models.BooleanField(default=false)
+	courseOfficeHours = models.PositiveIntegerField()
 
 	def __str__(self):
-        return self.firstname + ' ' + self.lastname
+		return self.firstname + ' ' + self.lastname
 
 ## Application data model
 class Application(models.Model):
