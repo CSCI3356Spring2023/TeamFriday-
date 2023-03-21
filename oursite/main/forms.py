@@ -1,9 +1,10 @@
 from django import forms
+from django.db import models
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from register.models import User, Student
+from .models import User, Student
 
 
 class UploadFileForm(forms.Form):
