@@ -87,10 +87,10 @@ class Admin(models.Model):
 
 class Course(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    courseNumber = models.CharField(max_length=8)
-    courseName = models.CharField(max_length=100)
-    courseSection = models.PositiveIntegerField()
-    courseInstructor = models.CharField(max_length=100)
+    number = models.CharField(max_length=8)
+    name = models.CharField(max_length=100)
+    section = models.CharField(max_length=30)
+    instructor = models.CharField(max_length=100)
 
     DAYS_CHOICES = (
 		('M', 'Monday'),
@@ -99,22 +99,24 @@ class Course(models.Model):
 		('TH', 'Thursday'),
 		('F', 'Friday'),
 	)
+    CHOICE = (('yes', 'Yes'),
+                 ('no', 'No'))
     HOURS = (('1', '1'),
              ('2', '2'),
              ('3', '3'),
              ('4', '4'),
              ('5', '5'))
-    courseDate = MultiSelectField(max_length=50, choices=DAYS_CHOICES)
-
-    courseStartTime = models.TimeField()
-    courseEndTime = models.TimeField()
-    courseTANeeded = models.CharField(max_length=1, choices=HOURS, default='2')
-
-    courseMarkHW = models.BooleanField(default=False)
-    courseOfficeHours = models.CharField(max_length=1, choices=HOURS, default='2')
-    courseDescription = models.CharField(max_length=200)
+    days = MultiSelectField(max_length=50, choices=DAYS_CHOICES)
+    disc_flag = models.CharField(max_length=3, choices= CHOICE, default='no')
+    disc_section = models.CharField(max_length=30, blank=True)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    positions = models.CharField(max_length=1, choices=HOURS, default='2')
+    graded_hw = models.CharField(max_length=3, choices= CHOICE, default='no')
+    office_hours = models.CharField(max_length=1, choices=HOURS, default='2')
+    desc = models.CharField(max_length=400)
     def __str__(self):
-	    return self.firstname + ' ' + self.lastname
+	    return self.name
 
 ## Application data model
 class Application(models.Model):
@@ -141,5 +143,5 @@ class Application(models.Model):
     coverl_desc = models.TextField(max_length=1000, default='test')
 
     def __str__(self):
-        return self.firstname + ' ' + self.lastname
+        return self.course + ': ' + 'Student Application'
 

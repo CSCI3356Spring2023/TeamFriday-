@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
 
-from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm
+from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
 
 
@@ -57,7 +57,27 @@ class addCourse(CreateView):
     form_class = addCourseForm
     template_name = 'main/addcourse.html'
 
+    def get_context_data(self, **kwargs):
+        kwargs['form_type'] = 'course'
+        return super().get_context_data(**kwargs)
+
     def form_valid(self,form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+
+        return redirect('/')
+    
+class CreateApplication(CreateView):
+    model = Application
+    form_class = CreateApplicationForm
+    template_name = 'main/create_app.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['form_type'] = 'application'
+        return super().get_context_data(**kwargs)
+    
+    def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()

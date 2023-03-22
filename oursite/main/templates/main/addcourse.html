@@ -17,10 +17,9 @@
 
 {%block content%}
 <h3>Add Course</h3>
-{% if user.is_authenticated and user.is_instructor %}
+{% if user.is_authenticated%}
     <form method="post" novalidate>
         {% csrf_token %}
-        {{form}}
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Add course</button>
     </form>

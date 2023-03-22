@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from .models import User, Student, Instructor, Admin, Course
+from .models import User, Student, Instructor, Admin, Course, Application
 
 class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=20)
@@ -102,14 +102,67 @@ class AdminSignUpForm(UserCreationForm):
         )
         return user
 
-class addCourseForm(forms.Form):
-    courseName = forms.CharField(label='Course Name')
-    courseNumber = forms.CharField(label='Course Number', max_length=8)
-    courseSection = forms.CharField(label='Course Section',max_length=2)
-    startTime = forms.TimeField(label='Start time') 
-    endTime = forms.TimeField(label='End time')
-    date = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=Course.DAYS_CHOICES, label='Days of course')
-    discussionBool = forms.BooleanField(required=False,label='Does this course have a discussion section?')
-    discussionSection = forms.CharField(max_length=12,required=False,label='Discussion section') # dropdown
-    officeHours = forms.CharField(max_length=2,label='Required office hours per week') #dropdown?
-    gradedInOfficeHrs = forms.BooleanField(label='Homework/assignments graded in meetings?')
+class addCourseForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(addCourseForm, self).__init__(*args, **kwargs)
+
+    DAYS = (('M', 'Monday'),
+            ('T', 'Tuesday',),
+            ('W', 'Wednsday'),
+            ('TH', 'Thursday'),
+            ('F', 'Friday'))
+    CHOICE = (('yes', 'Yes'),
+                 ('no', 'No'))
+    HOURS = (('1', '1'),
+             ('2', '2'),
+             ('3', '3'),
+             ('4', '4'),
+             ('5', '5'))
+
+    name = forms.CharField(label='Course Name')
+    number = forms.CharField(label='Course Number', max_length=8)
+    section = forms.CharField(label='Course Section',max_length=2)
+    instructor = forms.CharField(label='Course Instructor')
+    days = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=DAYS, label='Days')
+    start_time = forms.TimeField(label='Start time') 
+    end_time = forms.TimeField(label='End time')
+    disc_flag= forms.ChoiceField(label='Does the course have discussion sections? ', choices=CHOICE)
+    disc_section= forms.CharField(max_length=12,required=False,label='Discussion section') # dropdown
+    office_hours = forms.ChoiceField(label= 'Required office hours per week', choices=HOURS) #dropdown?
+    graded_hw = forms.ChoiceField(label='Homework/assignments graded in meetings?', choices=CHOICE )
+    positions = forms.ChoiceField(label='Number of TAs needed', choices=HOURS)
+    desc = forms.CharField(label='Description of the course', widget=forms.Textarea)
+
+
+    class Meta:
+        model = Course
+        fields = ('name', 'number', 'section', 'instructor', 'days', 'start_time', 'end_time', 'disc_flag', 'disc_section', 'office_hours', 'graded_hw', 'positions', 'desc')
+
+
+class CreateApplicationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CreateApplicationForm, self).__init__(*args, **kwargs)
+    CSCI1101_01 = 'CS1 Section 1'
+    CSCI1101_02 ='CS1 Section 2'
+    COURSE_CHOICES = [
+        (CSCI1101_01, 'CS1 Section 1'),
+        (CSCI1101_02, 'CS1 Section 2')
+    ]
+
+    course = forms.ChoiceField(label="Please select the course you're applying to", choices=COURSE_CHOICES)
+    taken_prev = forms.ChoiceField(label='Have you taken this course before?', choices= (('yes', 'Yes'), ('no', 'No')))
+    prev_desc = forms.CharField(
+        label='Please state the professor and the semester you took this course. Otherwise N/A',
+        widget=forms.Textarea,
+        )
+    # resume upload
+    coverl_desc = forms.CharField(
+        label='Use this space to write a cover letter/description',
+        widget=forms.Textarea)
+    
+    class Meta:
+        model = Application
+        fields = ('course', 'taken_prev', 'prev_desc', 'coverl_desc')
+    
