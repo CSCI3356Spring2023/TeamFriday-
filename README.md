@@ -1,6 +1,12 @@
-# TeamFriday :)
+# EagleHire
+## TeamFriday :)
 
-## To run the rpo
+![EagleHire](https://user-images.githubusercontent.com/87817813/226792489-a27d3ec0-9687-4cad-81d9-fdc258267732.PNG)
+
+
+
+
+## To run the repo
 
 After cloning go into the `/TeamFriday-/oursite/` directory and make sure to: ```pip install django-crispy-forms``` [(docs)](https://django-crispy-forms.readthedocs.io/en/latest/install.html),``` pip install django-multiselectfield```[(docs)](https://pypi.org/project/django-multiselectfield/), ``` pip install crispy-bootstrap4``` otherwise you will run into an error when running the server.
 
