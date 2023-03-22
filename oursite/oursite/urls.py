@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.decorators import login_required
 from main import views as v
 
 urlpatterns = [
@@ -25,6 +26,6 @@ urlpatterns = [
     path('accounts/signup/student', v.StudentSignUpView.as_view(), name='student_signup'),
     path('accounts/signup/instructor', v.InstructorSignUpView.as_view(), name='instructor_signup'),
     path('accounts/signup/admin', v.AdminSignUpView.as_view(), name='admin_signup'),
-    path("create/application", v.CreateApplication.as_view(), name="Create Application"),
-    path("create/course", v.addCourse.as_view(), name="Create Course"),
+    path("create/application", login_required(v.CreateApplication.as_view()), name="Create Application"),
+    path("create/course", login_required(v.addCourse.as_view()), name="Create Course"),
 ]

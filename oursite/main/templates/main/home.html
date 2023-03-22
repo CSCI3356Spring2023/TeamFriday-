@@ -5,8 +5,7 @@
 {%block nav%}
     <div class="nav-links">
         <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/admin">Admin</a></li> 
+      <li><a href="/home">Home</a></li>
       <li><a href="/logout">Logout</a></li> 
     </ul>
     </div>
@@ -15,16 +14,21 @@
 
 
 {%block content%}
-<h3>Welcome to the site!</h3>
-{% if user.is_authenticated and user.is_instructor %}
+<h3>Welcome  back {{user}}</h3>
+{% if user.is_authenticated and user.is_teacher %}
     <p>You are logged in as an instructor.</p>
     <p> To begin, create a new course. </p>
+    <a href="/create/course" class="btn btn-success">New course</a>
 {% elif user.is_authenticated and user.is_student %}
     <p>You are logged in as a student.</p> 
     <p> To begin, create a new application. </p>
+    <a href="/create/application" class="btn btn-success">New application</a>
 {%else%}  
     <p>You are logged in as an admin.</p>
     <p> To begin, create a new course or application. </p>
+    <a href="/create/course" class="btn btn-success">New course</a>
+    <a href="/create/application" class="btn btn-success">New application</a>
+    <a href="/admin" class="btn btn-primary">Admin</a>
 {% endif %}
     
 {%endblock%}

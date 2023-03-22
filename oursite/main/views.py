@@ -42,7 +42,7 @@ from .models import User, Student, Instructor, Admin, Course, Application
 #     return render(request, "upload.html", {"form": form})
 
 # Create your views here.
-@login_required(login_url='login/')
+@login_required()
 def home(response):
     return render(response, 'main/home.html', {})
 
@@ -66,8 +66,8 @@ class addCourse(CreateView):
         self.object.user = self.request.user
         self.object.save()
 
-        return redirect('/')
-    
+        return redirect('/home')
+
 class CreateApplication(CreateView):
     model = Application
     form_class = CreateApplicationForm
@@ -82,7 +82,7 @@ class CreateApplication(CreateView):
         self.object.user = self.request.user
         self.object.save()
 
-        return redirect('/')
+        return redirect('/home')
 
 
 class StudentSignUpView(CreateView):
@@ -98,8 +98,8 @@ class StudentSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
 
-        return redirect('/')
-    
+        return redirect('/home')
+
 class InstructorSignUpView(CreateView):
     model = User
     form_class = InstructorSignUpForm
@@ -113,7 +113,7 @@ class InstructorSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
 
-        return redirect('/')
+        return redirect('/home')
 
 class AdminSignUpView(CreateView):
     model = User
@@ -128,7 +128,7 @@ class AdminSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
 
-        return redirect('/')
+        return redirect('/home')
 
 
 

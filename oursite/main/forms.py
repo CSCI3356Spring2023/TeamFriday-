@@ -64,7 +64,7 @@ class InstructorSignUpForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         email = self.cleaned_data.get('email')
-        user.is_instructor = True
+        user.is_teacher = True
         user.email = email
         user.save()
         Instructor.objects.create(
@@ -90,6 +90,7 @@ class AdminSignUpForm(UserCreationForm):
         user = super().save(commit=False)
         email = self.cleaned_data.get('email')
         user.is_admin = True
+        user.is_superuser = True
         user.is_staff = True
         user.email = email
         user.save()
