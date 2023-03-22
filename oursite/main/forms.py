@@ -15,23 +15,22 @@ class StudentSignUpForm(UserCreationForm):
     SOPHOMORE = 'SO'
     JUNIOR = 'JR'
     SENIOR = 'SR'
-    Year_In_School_Choices = [
+    YEAR_IN_SCHOOL_CHOICES = [
         (FRESHMAN, 'Freshman'),
         (SOPHOMORE, 'Sophomore'),
         (JUNIOR, 'Junior'),
         (SENIOR, 'Senior'),
     ]
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    firstname = forms.CharField()
+    lastname = forms.CharField()
     email = forms.EmailField()
     major = forms.CharField()
-    minor = forms.CharField()
-    year = forms.ChoiceField(choices = Year_In_School_Choices)
+    grade = forms.ChoiceField(choices=YEAR_IN_SCHOOL_CHOICES)
     eagle_id = forms.CharField()
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'major', 'minor', 'year', 'eagle_id')
+        fields = ('firstname', 'lastname', 'email', 'major', 'grade', 'eagle_id')
 
     @transaction.atomic
     def save(self):
@@ -41,27 +40,25 @@ class StudentSignUpForm(UserCreationForm):
         user.email = email
         user.save()
         Student.objects.create(
-        user=user,
-        first_name=self.cleaned_data.get('first_name'),
-        last_name=self.cleaned_data.get('last_name'),
-        email=email,
-        major=self.cleaned_data.get('major'),
-        minor=self.cleaned_data.get('minor'),
-        year=self.cleaned_data.get('year'),
-        eagle_id=self.cleaned_data.get('eagle_id')
-    )
+            user=user,
+            firstname=self.cleaned_data.get('firstname'),
+            lastname=self.cleaned_data.get('lastname'),
+            email=email,
+            major=self.cleaned_data.get('major'),
+            grade=self.cleaned_data.get('grade'),
+            eagle_id=self.cleaned_data.get('eagle_id')
+        )
         return user
     
 class InstructorSignUpForm(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    department = forms.CharField()
+    firstname = forms.CharField()
+    lastname = forms.CharField()
+    position = forms.CharField()
     email = forms.EmailField()
-    eagle_id = forms.CharField()
 
     class Meta: 
         model = User
-        fields = ('first_name', 'last_name', 'department', 'email', 'eagle_id')
+        fields = ('firstname', 'lastname', 'position', 'email')
 
     @transaction.atomic
     def save(self):
@@ -72,39 +69,37 @@ class InstructorSignUpForm(UserCreationForm):
         user.save()
         Instructor.objects.create(
         user=user,
-        first_name=self.cleaned_data.get('first_name'),
-        last_name=self.cleaned_data.get('last_name'),
-        department=self.cleaned_data.get('department'),
+        firstname=self.cleaned_data.get('firstname'),
+        lastname=self.cleaned_data.get('lastname'),
+        position=self.cleaned_data.get('position'),
         email=email,
-        eagle_id=self.cleaned_data.get('eagle_id')
     )
         return user
 class AdminSignUpForm(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    firstname = forms.CharField()
+    lastname = forms.CharField()
     department = forms.CharField()
     email = forms.EmailField()
-    eagle_id = forms.CharField()
 
     class Meta: 
         model = User
-        fields = ('first_name', 'last_name', 'department', 'email', 'eagle_id')
+        fields = ('firstname', 'lastname', 'department', 'email')
 
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
         email = self.cleaned_data.get('email')
         user.is_admin = True
+        user.is_staff = True
         user.email = email
         user.save()
         Admin.objects.create(
-        user=user,
-        first_name=self.cleaned_data.get('first_name'),
-        last_name=self.cleaned_data.get('last_name'),
-        department=self.cleaned_data.get('department'),
-        email=email,
-        eagle_id=self.cleaned_data.get('eagle_id')
-    )
+            user=user,
+            firstname=self.cleaned_data.get('firstname'),
+            lastname=self.cleaned_data.get('lastname'),
+            department=self.cleaned_data.get('department'),
+            email=email,
+        )
         return user
 
 class addCourseForm(forms.Form):

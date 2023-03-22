@@ -1,10 +1,10 @@
-from django.db import models
 from django import forms
-from multiselectfield import MultiSelectField
+
 
 # Create your models here.
 
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from multiselectfield import MultiSelectField
@@ -30,6 +30,18 @@ class User(AbstractUser):
 # all info related to a student from d3 pdf.
 # Class Student(models.model):
 class Student(models.Model):
+    FRESHMAN = 'FR'
+    SOPHOMORE = 'SO'
+    JUNIOR = 'JR'
+    SENIOR = 'SR'
+    YEAR_IN_SCHOOL_CHOICES = [
+        (FRESHMAN, 'Freshman'),
+        (SOPHOMORE, 'Sophomore'),
+        (JUNIOR, 'Junior'),
+        (SENIOR, 'Senior'),
+    ]
+
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
@@ -37,7 +49,11 @@ class Student(models.Model):
     major = models.CharField(max_length=20)
     eagle_id = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,8}$')])
     available = models.BooleanField(default=True)
-    graduation_year = models.CharField(max_length = 4,)
+    grade = models.CharField(
+        max_length=2,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FRESHMAN,
+    )
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
@@ -70,81 +86,60 @@ class Admin(models.Model):
 #create fields for all relevant course info
 
 class Course(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    courseNumber = models.CharField(max_length=8)
+    courseName = models.CharField(max_length=100)
+    courseSection = models.PositiveIntegerField()
+    courseInstructor = models.CharField(max_length=100)
 
-	courseNumber = models.CharField(max_length=8)
-	courseName = models.CharField(max_length=100)
-	courseDescription = models.TextField()
-	courseSection = models.PositiveIntegerField()
-	courseInstructor = models.CharField(max_length=100)
-
-	DAYS_CHOICES = (
+    DAYS_CHOICES = (
 		('M', 'Monday'),
 		('T', 'Tuesday'),
 		('W', 'Wednesday'),
 		('TH', 'Thursday'),
 		('F', 'Friday'),
 	)
+    HOURS = (('1', '1'),
+             ('2', '2'),
+             ('3', '3'),
+             ('4', '4'),
+             ('5', '5'))
+    courseDate = MultiSelectField(max_length=50, choices=DAYS_CHOICES)
 
-	courseDate = MultiSelectField(max_length=50, choices=DAYS_CHOICES)
+    courseStartTime = models.TimeField()
+    courseEndTime = models.TimeField()
+    courseTANeeded = models.CharField(max_length=1, choices=HOURS, default='2')
 
-	courseStartTime = models.TimeField()
-	courseEndTime = models.TimeField()
-	courseTANeeded = models.IntegerField()
-
-	courseMarkHW = models.BooleanField(default=False)
-	courseOfficeHours = models.PositiveIntegerField()
-
-	def __str__(self):
-		return self.firstname + ' ' + self.lastname
+    courseMarkHW = models.BooleanField(default=False)
+    courseOfficeHours = models.CharField(max_length=1, choices=HOURS, default='2')
+    courseDescription = models.CharField(max_length=200)
+    def __str__(self):
+	    return self.firstname + ' ' + self.lastname
 
 ## Application data model
 class Application(models.Model):
-
-    def word_counter(string):
-        return string.count(" ") + 1
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    course = models.CharField(max_length=12) # ex)CSCI1101.02 = 11 characters
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    CSCI1101_01 = 'CS1 Section 1'
+    CSCI1101_02 ='CS1 Section 2'
+    COURSE_CHOICES = [
+        (CSCI1101_01, 'CS1 Section 1'),
+        (CSCI1101_02, 'CS1 Section 2')
+    ]
+    
+    course = models.CharField(
+        max_length=20,
+        choices=COURSE_CHOICES,
+        default=CSCI1101_01,) # ex)CSCI1101.02 = 11 characters
     # In our prototype, this was done as a dropdown, database accessed already
-
-    experience = models.BooleanField(default=False) # Have you taken this course before?
-    professor = models.CharField(max_length=25) # Name of the Professor when you took it (otherwise, N/A.)
-    semester = models.CharField(max_length=12) # Semester you took the course (otherwise, N/A.)
+    taken_prev = models.CharField( # Have you taken this course before
+        max_length=3,
+        choices= [('yes', 'Yes'), ('no', 'No')],
+        default= 'No'
+    )
+    prev_desc = models.CharField(max_length=200, default='test') # Previous experience description
     #resume = #file upload
-    #cover_letter = models.CharField(max_length=(word_counter())>=400) # I want to write a function that checks 400 words, not 400 characters!
+    coverl_desc = models.TextField(max_length=1000, default='test')
 
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
-
-
-class addCourse(models.Model):
-
-    DATE_CHOICES = (('MONDAY','Monday'),
-    ('TUESDAY','Tuesday'),
-    ('WEDNESDAY','Wednesday'),
-    ('THURSDAY','Thursday'),
-    ('FRIDAY','Friday'),
-    ('M/W/F','m/w/f'),
-    ('M/W','m/w'),
-    ('T/TH','t/th'))
-
-
-# class addCourse(models.Model):
-#     # fields of the model
-#     courseName = models.TextField()
-#     courseNumber = models.CharField(max_length=8)
-#     courseSection = models.CharField(max_length=2)
-#     startTime = models.TimeField()
-#     endTime = models.TimeField()
-#     # want to select from a list but idk how to do that lol
-#     date = models.CharField(max_length=10,choices=DATE_CHOICES) # idk how to do list so rn format is like type M/W/F or T/TH
-#     discussionBool = models.BooleanField()
-#     discussionSection = models.CharField(max_length=12) # dropdown
-#     officeHours = models.CharField(max_length=2) #dropdown?
-#     gradedInOfficeHrs = models.BooleanField()
-
-#         # renames the instances of the model
-#         # with their title name
-#     def __str__(self):
-#         return self.firstname + ' ' + self.lastname
