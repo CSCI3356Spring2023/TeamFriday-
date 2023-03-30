@@ -26,7 +26,7 @@ body {
 .nav {
     height: 50px;
     width: 100%;
-    background-color:#983159;
+    background-color:#990000;
     position: relative;
   }
   
@@ -37,7 +37,7 @@ body {
   .nav > .nav-header > .nav-title  {
     display: inline-block;
     font-size: 22px;
-    color: #faac56;
+    color: #BC9B6A;
     font-weight: 550;
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px 10px 10px 10px;
