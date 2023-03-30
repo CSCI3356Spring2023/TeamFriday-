@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
+import datetime as dt
 
 from .models import User, Student, Instructor, Admin, Course, Application
 
@@ -107,7 +108,11 @@ class addCourseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(addCourseForm, self).__init__(*args, **kwargs)
-
+    HOUR_CHOICES = [(dt.time(hour=x), '{:02d}:00'.format(x)) for x in range(0, 24)]
+    DEPT = (('CSCI', 'CSCI'),
+            ('MATH', 'Mathematics'),
+            ('BIOL', 'Biology'),
+            ('PHYS', 'Physics'))
     DAYS = (('M', 'Monday'),
             ('T', 'Tuesday',),
             ('W', 'Wednsday'),
@@ -120,25 +125,24 @@ class addCourseForm(forms.ModelForm):
              ('3', '3'),
              ('4', '4'),
              ('5', '5'))
-
+    department = forms.ChoiceField(label='Select department:', choices=DEPT)
     name = forms.CharField(label='Course Name')
-    number = forms.CharField(label='Course Number', max_length=8)
-    section = forms.CharField(label='Course Section',max_length=2)
-    instructor = forms.CharField(label='Course Instructor')
+    number = forms.CharField(label='Course Number (e.g. 1011)', max_length=4)
+    section = forms.ChoiceField(label='Course Section', choices=HOURS)
+    instructor = forms.CharField(label='Course Instructor (Last name)')
     days = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=DAYS, label='Days')
-    start_time = forms.TimeField(label='Start time') 
-    end_time = forms.TimeField(label='End time')
+    start_time = forms.TimeField(label='Start time', widget=forms.Select(choices=HOUR_CHOICES)) 
+    end_time = forms.TimeField(label='End time', widget=forms.Select(choices=HOUR_CHOICES))
     disc_flag= forms.ChoiceField(label='Does the course have discussion sections? ', choices=CHOICE)
-    disc_section= forms.CharField(max_length=12,required=False,label='Discussion section') # dropdown
-    office_hours = forms.ChoiceField(label= 'Required office hours per week', choices=HOURS) #dropdown?
+    disc_section= forms.CharField(max_length=12,required=False,label='Discussion section')  # make a new table for discussion sections?
+    office_hours = forms.ChoiceField(label= 'Required office hours per week', choices=HOURS) 
     graded_hw = forms.ChoiceField(label='Homework/assignments graded in meetings?', choices=CHOICE )
     positions = forms.ChoiceField(label='Number of TAs needed', choices=HOURS)
     desc = forms.CharField(label='Description of the course', widget=forms.Textarea)
 
-
     class Meta:
         model = Course
-        fields = ('name', 'number', 'section', 'instructor', 'days', 'start_time', 'end_time', 'disc_flag', 'disc_section', 'office_hours', 'graded_hw', 'positions', 'desc')
+        fields = ('department', 'name', 'number', 'section', 'instructor', 'days', 'start_time', 'end_time', 'disc_flag', 'disc_section', 'office_hours', 'graded_hw', 'positions', 'desc')
 
 
 class CreateApplicationForm(forms.ModelForm):

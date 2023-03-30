@@ -64,6 +64,8 @@ class addCourse(CreateView):
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        course_code = self.object.department + self.object.number + ': ' + self.object.name
+        self.object.course_code = course_code
         self.object.save()
 
         return redirect('/home')
