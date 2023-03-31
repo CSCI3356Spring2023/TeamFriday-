@@ -41,4 +41,3 @@ Our styles.css file is located in `./oursite/main/static/`.
 ## HTML
 
 Our main templates are located in `./oursite/main/templates/main`.
-
