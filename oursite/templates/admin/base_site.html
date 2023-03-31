@@ -1,7 +1,5 @@
 {% extends "admin/base.html" %}
- 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
- 
+{% load static %}
 {% block branding %}
 <h1 id="site-name" style="font-family: cursive;" ><a href="{% url 'admin:index' %}">Eagle Hire Administration</a></h1>
 {% endblock %}
