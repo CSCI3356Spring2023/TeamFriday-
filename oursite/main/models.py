@@ -25,50 +25,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-# Student profile model
-# all info related to a student from d3 pdf.
-# Class Student(models.model):
-class Student(models.Model):
-    FRESHMAN = 'FR'
-    SOPHOMORE = 'SO'
-    JUNIOR = 'JR'
-    SENIOR = 'SR'
-    YEAR_IN_SCHOOL_CHOICES = [
-        (FRESHMAN, 'Freshman'),
-        (SOPHOMORE, 'Sophomore'),
-        (JUNIOR, 'Junior'),
-        (SENIOR, 'Senior'),
-    ]
-
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    firstname = models.CharField(max_length=30)
-    lastname = models.CharField(max_length=30)
-    email = models.EmailField(max_length=40)
-    major = models.CharField(max_length=20)
-    eagle_id = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,8}$')])
-    available = models.BooleanField(default=True)
-    grade = models.CharField(
-        max_length=2,
-        choices=YEAR_IN_SCHOOL_CHOICES,
-        default=FRESHMAN,
-    )
-    def __str__(self):
-        return self.firstname + ' ' + self.lastname
-
-## Instructor profile model:
-# Class Instructor(models.model):
-#.......
-class Instructor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    firstname = models.CharField(max_length=30)
-    lastname = models.CharField(max_length=30)
-    email = models.EmailField(max_length=40)
-    position = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.firstname + ' ' + self.lastname
-
 # Admin profle model
 class Admin(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -110,7 +66,7 @@ class Application(models.Model):
 #-- Course data model
 class Course(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
-    instructor = models.CharField(max_length=100)
+    professor = models.CharField(max_length=100)
     department = models.CharField(max_length=4)
     name = models.CharField(max_length=50)
     number = models.CharField(max_length=4)
@@ -144,5 +100,48 @@ class Course(models.Model):
     def __str__(self):
 	    return 'ID: '+ str(self.id) + ' | ' + str(self.course_code)  
 
+# Student profile model
+# all info related to a student from d3 pdf.
+# Class Student(models.model):
+class Student(models.Model):
+    FRESHMAN = 'FR'
+    SOPHOMORE = 'SO'
+    JUNIOR = 'JR'
+    SENIOR = 'SR'
+    YEAR_IN_SCHOOL_CHOICES = [
+        (FRESHMAN, 'Freshman'),
+        (SOPHOMORE, 'Sophomore'),
+        (JUNIOR, 'Junior'),
+        (SENIOR, 'Senior'),
+    ]
 
 
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    firstname = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
+    email = models.EmailField(max_length=40)
+    major = models.CharField(max_length=20)
+    eagle_id = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,8}$')])
+    available = models.BooleanField(default=True)
+    grade = models.CharField(
+        max_length=2,
+        choices=YEAR_IN_SCHOOL_CHOICES,
+        default=FRESHMAN,
+    )
+    applications = models.ManyToManyField(Application, default='', blank=True)
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
+
+## Instructor profile model:
+# Class Instructor(models.model):
+#.......
+class Instructor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    firstname = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
+    email = models.EmailField(max_length=40)
+    position = models.CharField(max_length=30)
+    course_list = models.ManyToManyField(Course, default='', blank=True)
+
+    def __str__(self):
+        return self.firstname + ' ' + self.lastname
