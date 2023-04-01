@@ -137,7 +137,7 @@ class AdminSignUpView(CreateView):
 class CourseListView(ListView):
     model = Course
     template_name = 'main/home.html'
-    context_object_name = '/addCourse'
+    context_object_name = 'courses'
 
 
 

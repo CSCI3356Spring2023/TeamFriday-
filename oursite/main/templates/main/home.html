@@ -21,8 +21,8 @@
     <a href="/create/course" class="btn btn-success">New course</a>
     <p> Created Courses</p>
 {% for Course in courses %}
-    <h3>{{ Course.title }}</h3>
-    <p>{{ Course.description }}</p>
+    <h3>{{ Course.name }}</h3>
+    <p>{{ Course.desc }}</p>
 {% endfor %}
 
 {% elif user.is_authenticated and user.is_student %}
