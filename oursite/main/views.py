@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
+from django.views.generic import ListView
+from .models import Course
 
 from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
@@ -131,6 +133,11 @@ class AdminSignUpView(CreateView):
         login(self.request, user)
 
         return redirect('/home')
+
+class CourseListView(ListView):
+    model = Course
+    template_name = 'main/home.html'
+    context_object_name = '/addCourse'
 
 
 

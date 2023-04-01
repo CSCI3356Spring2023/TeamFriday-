@@ -19,6 +19,12 @@
     <p>You are logged in as an instructor.</p>
     <p> To begin, create a new course. </p>
     <a href="/create/course" class="btn btn-success">New course</a>
+    <p> Created Courses</p>
+{% for Course in courses %}
+    <h3>{{ Course.title }}</h3>
+    <p>{{ Course.description }}</p>
+{% endfor %}
+
 {% elif user.is_authenticated and user.is_student %}
     <p>You are logged in as a student.</p> 
     <p> To begin, create a new application. </p>
