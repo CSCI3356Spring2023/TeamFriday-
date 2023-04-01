@@ -29,12 +29,22 @@
     <p>You are logged in as a student.</p> 
     <p> To begin, create a new application. </p>
     <a href="/create/application" class="btn btn-success">New application</a>
+    <p> Created Courses</p>
+{% for Course in courses %}
+    <h3>{{ Course.name }}</h3>
+    <p>{{ Course.desc }}</p>
+{% endfor %}
 {%else%}  
     <p>You are logged in as an admin.</p>
     <p> To begin, create a new course or application. </p>
     <a href="/create/course" class="btn btn-success">New course</a>
     <a href="/create/application" class="btn btn-success">New application</a>
     <a href="/admin" class="btn btn-primary">Admin</a>
+    <p> Created Courses</p>
+{% for Course in courses %}
+    <h3>{{ Course.name }}</h3>
+    <p>{{ Course.desc }}</p>
+{% endfor %}
 {% endif %}
     
 {%endblock%}
