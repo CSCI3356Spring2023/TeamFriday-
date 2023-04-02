@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
+from django.views.generic import ListView
+from .models import Course
 
 from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
@@ -64,6 +66,8 @@ class addCourse(CreateView):
     def form_valid(self,form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        course_code = self.object.department + self.object.number + ': ' + self.object.name
+        self.object.course_code = course_code
         self.object.save()
 
         return redirect('/home')
