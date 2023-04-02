@@ -1,7 +1,57 @@
+
+
 {% extends "admin/base.html" %}
 {% load static %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+:root {
+  --primary: #73131d;
+  --secondary: #73131d;
+  --link-fg: #000000;
+  --link-selected-fg: #EC7979;
+}
+
+#header {
+    padding: 0;
+}
+
+#branding h1 a:link, #branding h1 a:visited {
+    color: #BC9B6A;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#branding h1 {
+    padding: 0px;
+    margin: 0 20px 0 0;
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: var(--header-branding-color);
+    display: inline-block;
+    float: right;
+    padding-left: 10px;
+    margin-top: 17px;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+</style>
+{% endblock %}
+
 {% block branding %}
-<h1 id="site-name" style="font-family: cursive;" ><a href="{% url 'admin:index' %}">Eagle Hire Administration</a></h1>
+
+<img src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png">
+<h1 id="site-name" style="font-family: cursive;" ><a href="{% url 'admin:index' %}">EagleHire Administration</a></h1>
+
 {% endblock %}
  
 {% block nav-global %}{% endblock %}
