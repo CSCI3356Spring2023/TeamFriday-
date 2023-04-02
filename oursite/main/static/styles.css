@@ -6,32 +6,19 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-
-.btn{
-  color: #fff;
-  background-color: #aa0000;
-  border-color: #aa0000;
-}
-
-.btn:hover{
-  background-color: #EC7979;
-  border-color: #EC7979;
-}
-
 .logo-image{
-  width: 50px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-top: 5px;
-  margin-left: 10px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 0px;
 }
 .nav {
-  height: 60px;
-  width: 100%;
-  background-color:#73131d;
-  position: relative;
-}
+    height: 50px;
+    width: 100%;
+    background-color:#983159;
+    position: relative;
+  }
   
   .nav > .nav-header {
     display: inline;
@@ -39,13 +26,12 @@ body {
   
   .nav > .nav-header > .nav-title  {
     display: inline-block;
-    font-size: 30px;
-    color: #BC9B6A;
+    font-size: 22px;
+    color: #faac56;
     font-weight: 550;
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 10px 10px 10px 10px;
     text-decoration: none;
-    margin-top: -2px;
   }
 
   .nav > .nav-btn {
