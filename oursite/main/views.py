@@ -134,11 +134,6 @@ class AdminSignUpView(CreateView):
 
         return redirect('/home')
 
-class InstructorSummaryView(CreateView):
-    model = User
-    form_class = AdminSignUpForm
-    template_name = 'main/InstructorSummary.html'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'instructor'
-        return super().get_context_data(**kwargs)
+
+
