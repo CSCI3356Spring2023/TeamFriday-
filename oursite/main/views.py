@@ -89,6 +89,27 @@ class CreateApplication(CreateView):
         return redirect('/home')
 
 
+
+def apply(response, id):
+    if response.method == "POST":
+        form = CreateApplicationForm(response.POST, response.FILES)
+        course = Course.objects.get(id=id)
+        apps = Application.objects.filter(user=response.user)
+        app_count = len(apps)
+
+        if form.is_valid() and app_count < 5:
+            application = Application(course_name = course.course_code, user=response.user)
+            resume = response.FILES['resume']
+            application.resume = resume
+            application.save()
+            course.applications.add(application)
+            course.save()
+        return redirect('/home')
+    else:
+            form = CreateApplicationForm()
+
+    return render(response, "main/create_app.html",{'form':form})   
+
 class StudentSignUpView(CreateView):
     model = User
     form_class = StudentSignUpForm

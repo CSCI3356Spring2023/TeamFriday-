@@ -162,7 +162,7 @@ class CreateApplicationForm(forms.ModelForm):
         label='Please state the professor and the semester you took this course. Otherwise N/A',
         widget=forms.Textarea,
         )
-    # resume upload
+    resume = forms.FileField(label="Please upload your resume")
     coverl_desc = forms.CharField(
         label='Use this space to write a cover letter/description',
         widget=forms.Textarea)
