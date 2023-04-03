@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.fp, name="front page"),
     path("home/",views.CourseListView.as_view(),name="home page"),
     path("apply/<int:id>",views.apply, name="apply"),
+    path("instructor_summary/",views.InstructorSummaryView, name="instructor_summary"),
 ]

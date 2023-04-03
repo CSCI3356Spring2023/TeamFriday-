@@ -164,15 +164,28 @@ class CourseListView(ListView):
     template_name = 'main/home.html'
     context_object_name = 'courses'
 
-class InstructorSummaryView(CreateView):
-    model = User
-    form_class = AdminSignUpForm
-    template_name = 'main/InstructorSummary.html'
-    instructor = Instructor()
-    course_list = instructor.course_list.objects.all()
+def InstructorSummaryView(response):
+    # model = Course
+    # template_name = 'main/Instructor_Summary.html'
+    # context_object_name = 'courses'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'instructor'
-        return super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super(InstructorSummaryView, self).get_context_data(**kwargs)
+    #     courses = Course().objects.filter(user = self.request.user)
+    #     apps = []
+    #     for course in courses:
+    #         apps.extend(course.application.all())
+    #     context['applications'] = apps
+
+    #     return context
+
+    context = {}
+    if response.method == "GET" :
+        courses = Course.objects.filter(user = response.user)
+        apps = []
+        for course in courses:
+            apps.extend(course.applications.all())
+        context['applications'] = apps
+    return render(response, "main/Instructor_Summary.html",context)
 
 
