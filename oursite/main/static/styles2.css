@@ -9,6 +9,34 @@ body {
     overflow: hidden;
 }
 
+.btn{
+  color: #fff;
+  background-color: #aa0000;
+  border-color: #aa0000;
+}
+
+.btn:hover{
+  background-color: #EC7979;
+  border-color: #EC7979;
+}
+
+/* .btn:active{
+  background-color: #EC7979;
+  border-color: #EC7979;
+} */
+
+.card-body{
+  background-color: #726158;
+  border-color: #726158;
+}
+
+.card-footer{
+  background-color: #726158;
+  border-color: #726158;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+
 .card{
     margin-left: auto;
     margin-right: auto;
@@ -17,16 +45,17 @@ body {
 }
 
 .logo-image{
-    width: 46px;
-    height: 46px;
+    width: 50px;
+    height: 60px;
     border-radius: 50%;
     overflow: hidden;
-    margin-top: 0px;
+    margin-top: 5px;
+    margin-left: 10px;
 }
 .nav {
-    height: 50px;
+    height: 60px;
     width: 100%;
-    background-color:#983159;
+    background-color:#73131d;
     position: relative;
   }
   
@@ -36,12 +65,13 @@ body {
   
   .nav > .nav-header > .nav-title  {
     display: inline-block;
-    font-size: 22px;
-    color: #faac56;
+    font-size: 30px;
+    color: #BC9B6A;
     font-weight: 550;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, "Times New Roman", Times, serif;
     padding: 10px 10px 10px 10px;
     text-decoration: none;
+    margin-top: -2px;
   }
 
   .nav > .nav-btn {
