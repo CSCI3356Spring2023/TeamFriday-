@@ -164,6 +164,15 @@ class CourseListView(ListView):
     template_name = 'main/home.html'
     context_object_name = 'courses'
 
+class InstructorSummaryView(CreateView):
+    model = User
+    form_class = AdminSignUpForm
+    template_name = 'main/InstructorSummary.html'
+    instructor = Instructor()
+    course_list = instructor.course_list.objects.all()
 
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'instructor'
+        return super().get_context_data(**kwargs)
 
 
