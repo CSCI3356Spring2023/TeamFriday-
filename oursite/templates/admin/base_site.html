@@ -8,7 +8,7 @@
 :root {
   --primary: #73131d;
   --secondary: #73131d;
-  --link-fg: #000000;
+  --link-fg: #eee;
   --link-selected-fg: #EC7979;
 }
 
@@ -35,7 +35,7 @@
     margin-top: 17px;
 }
 
-img {
+.logo {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -49,7 +49,7 @@ img {
 
 {% block branding %}
 
-<img src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png">
+<img class="logo" src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png">
 <h1 id="site-name" style="font-family: cursive;" ><a href="{% url 'admin:index' %}">EagleHire Administration</a></h1>
 
 {% endblock %}
