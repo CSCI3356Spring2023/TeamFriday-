@@ -50,6 +50,10 @@ def home(response):
 
 
 def fp(response):
+
+    if response.user.is_authenticated:
+        return redirect('/home')
+
     return render(response, 'main/fp.html', {})
 # StudentSignupView
 
