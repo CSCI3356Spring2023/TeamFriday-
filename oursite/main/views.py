@@ -13,6 +13,8 @@ from .models import Course
 from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
 
+from django.core.mail import send_mail
+
 
 # Imaginary function to handle an uploaded file.
 # from somewhere import handle_uploaded_file
@@ -73,6 +75,17 @@ class addCourse(CreateView):
         course_code = self.object.department + self.object.number + ': ' + self.object.name
         self.object.course_code = course_code
         self.object.save()
+
+	# email
+	email = self.request.user.email
+	send_mail(
+		'Subject: Successfully Created Course',
+		course_code,
+		'BCEagleHire@gmail.com'
+		email,
+		fail_silently=False,
+	}
+		
 
         return redirect('/home')
 
