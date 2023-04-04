@@ -9,6 +9,7 @@
         <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/logout">Logout</a></li> 
+      <li><a href="/instructor_summary">Applications</a></li>
     </ul>
     </div>
 {%endblock%}
@@ -17,7 +18,7 @@
 
 {%block content%}
 <h3>Instructor Courses Summary</h3>
-{% if user.is_authenticated%}
+{% if user.is_authenticated %}
     <p>Logged in as {{user}}</p>
     <a href="/create/course" class="btn btn-success">New course</a>
     <a href="/home/" class="btn btn-success">Home</a>
@@ -36,17 +37,20 @@
                   <tr>
                   {% for course in courses%}
                       {%if course.user == user%}
-                        <p>{{course.course_code}}</p>
-                        <!-- <td><h4>{{course.course_code}}</h4>
-                            <p>{{course.desc}}</p>
-                        </td>
-                        <td>{{course.positions}}</td>
+                        <td><p>{{course.course_code}}</p></td>
                         <td>
-                            <p>{{course.days}}:</p>
-                            <p>{{course.start_time}} - {{course.end_time}}</p>
-                        </td> -->
+                          <p>{{course.days}}:</p>
+                          <p>{{course.start_time}} - {{course.end_time}}</p>
+                        </td>
+                        <td>
+                          {%for app in course.applications.all %}
+                            <ul>
+                              <li>{{app}}</li>
+                            </ul>
+                          {%endfor%}
+                        </td>
                       {% else %}
-                        <p>There are no courses.</p>
+                        <td><p>There are no courses.</p></td>
                       {%endif%}
                   </tr>
                   {% endfor %}

@@ -4,10 +4,13 @@
 
 {%block nav%}
     <div class="nav-links">
-        <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/logout">Logout</a></li> 
-    </ul>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% if user.is_authenticated and user.is_admin %} 
+        <li><a href="/instructor_summary">Applications</a></li>
+        {%endif%}
+      </ul>
     </div>
 {%endblock%}
 
@@ -28,6 +31,7 @@
                     <th scope="col"><h3>Course</h3></th>
                     <th scope="col"><h3>Positions</h3></th>
                     <th scope="col"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Discussion</h3></th>
                     <th scope="col"><h3>Action</h3></th>
                   </tr>
                 </thead>
@@ -43,6 +47,7 @@
                             <p>{{course.days}}:</p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
+                          <td>{{course.disc_flag}}</td>
                           <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}
@@ -109,6 +114,9 @@
                     <th scope="col"><h3>Course</h3></th>
                     <th scope="col"><h3>Positions</h3></th>
                     <th scope="col"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Discussion</h3></th>
+                    <th scope="col"><h3>Graded Hw</h3></th>
+                    <th scope="col"><h3>Office hours/week</h3></th>
                     <th scope="col"><h3>Action</h3></th>
                   </tr>
                 </thead>
@@ -124,6 +132,9 @@
                             <p>{{course.days}}:</p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
+                          <td>{{course.disc_flag}}</td>
+                          <td>{{course.graded_hw}}</td>
+                          <td>{{course.office_hours}}</td>
                           <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}

@@ -186,6 +186,7 @@ def InstructorSummaryView(response):
         for course in courses:
             apps.extend(course.applications.all())
         context['applications'] = apps
+        context['courses'] = courses
     return render(response, "main/Instructor_Summary.html",context)
 
 
