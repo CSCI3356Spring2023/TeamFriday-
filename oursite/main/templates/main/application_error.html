@@ -1,0 +1,139 @@
+{% extends 'main/base.html' %}
+
+{%block title%}Home{%endblock%}
+
+{%block nav%}
+    <div class="nav-links">
+        <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/logout">Logout</a></li> 
+    </ul>
+    </div>
+{%endblock%}
+
+
+
+{%block content%}
+<h3>Welcome  back {{user}}</h3>
+{% if user.is_authenticated and user.is_teacher %}
+    <p>You are logged in as an instructor.</p>
+    <p> To begin, create a new course. </p>
+    <a href="/create/course" class="btn btn-success">New course</a>
+    <div class="course-summary">
+        <h1 class="display-4">Created Courses</h1> 
+        <div class="table-responsive-md">
+            <table class="table table-dark table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"><h3>Course</h3></th>
+                    <th scope="col"><h3>Positions</h3></th>
+                    <th scope="col"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Action</h3></th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% if courses %}
+                      <tr>
+                      {% for course in courses%}
+                          <td><h4>{{course.course_code}}</h4>
+                            <p>{{course.desc}}</p>
+                          </td>
+                          <td>{{course.positions}}</td>
+                          <td>
+                            <p>{{course.days}}:</p>
+                            <p>{{course.start_time}} - {{course.end_time}}</p>
+                          </td>
+                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              {% else %}
+                <p>There are no courses.</p>
+              {% endif %}
+                </table>
+        </div>
+    </div>
+
+{% elif user.is_authenticated and user.is_student %}
+    <p>You are logged in as a student.</p> 
+    <p> You have already submitted five applications. Please withdraw an application to submit another one. </p>
+    <a href="/create/application" class="btn btn-success">View Applications</a>
+   
+    <div class="course-summary">
+        <h1 class="display-4">Created Courses</h1> 
+        <div class="table-responsive-md">
+            <table class="table table-dark table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"><h3>Course</h3></th>
+                    <th scope="col"><h3>Positions</h3></th>
+                    <th scope="col"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Action</h3></th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% if courses %}
+                      <tr>
+                      {% for course in courses%}
+                          <td><h4>{{course.course_code}}</h4>
+                            <p>{{course.desc}}</p>
+                          </td>
+                          <td>{{course.positions}}</td>
+                          <td>
+                            <p>{{course.days}}:</p>
+                            <p>{{course.start_time}} - {{course.end_time}}</p>
+                          </td>
+                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              {% else %}
+                <p>There are no courses.</p>
+              {% endif %}
+                </table>
+        </div>
+    </div>
+{%else%}  
+    <p>You are logged in as an admin.</p>
+    <p> To begin, create a new course or application. </p>
+    <a href="/create/course" class="btn btn-success">New course</a>
+    <a href="/create/application" class="btn btn-success">New application</a>
+    <a href="/admin" class="btn btn-primary">Admin</a>
+    
+    <div class="course-summary">
+        <h1 class="display-4">Created Courses</h1> 
+        <div class="table-responsive-md">
+            <table class="table table-dark table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col"><h3>Course</h3></th>
+                    <th scope="col"><h3>Positions</h3></th>
+                    <th scope="col"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Action</h3></th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% if courses %}
+                      <tr>
+                      {% for course in courses%}
+                          <td><h4>{{course.course_code}}</h4>
+                            <p>{{course.desc}}</p>
+                          </td>
+                          <td>{{course.positions}}</td>
+                          <td>
+                            <p>{{course.days}}:</p>
+                            <p>{{course.start_time}} - {{course.end_time}}</p>
+                          </td>
+                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              {% else %}
+                <p>There are no courses.</p>
+              {% endif %}
+                </table>
+        </div>
+    </div>
+    
+{% endif %}
+{%endblock%}

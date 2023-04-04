@@ -50,6 +50,10 @@ from django.core.mail import send_mail
 def home(response):
     return render(response, 'main/home.html', {})
 
+class app_error(ListView):
+    model = Course
+    template_name = 'main/application_error.html'
+    context_object_name = 'courses'
 
 def fp(response):
 
@@ -77,14 +81,14 @@ class addCourse(CreateView):
         self.object.save()
 
 	# email
-	email = self.request.user.email
-	send_mail(
-		'Subject: Successfully Created Course',
-		'text',
-		'BCEagleHire@gmail.com',
-		[email],
-		fail_silently=False,
-	)
+	# email = self.request.user.email
+	# send_mail(
+	#     'Subject: Successfully Created Course',
+	# 	'text',
+	# 	'BCEagleHire@gmail.com',
+	# 	[email],
+	# 	fail_silently=False,
+	# )
 		
 
         return redirect('/home')
@@ -131,6 +135,8 @@ def apply(response, id):
             application.save()
             course.applications.add(application)
             course.save()
+        else:
+            return redirect('/apply/error/')
         return redirect('/home')
     else:
             form = CreateApplicationForm()
