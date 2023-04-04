@@ -15,36 +15,6 @@ from .models import User, Student, Instructor, Admin, Course, Application
 
 from django.core.mail import send_mail
 
-
-# Imaginary function to handle an uploaded file.
-# from somewhere import handle_uploaded_file
-
-# def handle_uploaded_file(f):
-#     with open("some/file/name.txt", "wb+") as destination:
-#         for chunk in f.chunks():
-#             destination.write(chunk)
-
-# def upload_file(request):
-#     if request.method == "POST":
-#         form = UploadFileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             handle_uploaded_file(request.FILES["file"])
-#             return HttpResponseRedirect("/success/url/")
-#     else:
-#         form = UploadFileForm()
-#     return render(request, "upload.html", {"form": form})
-
-# def upload_file(request):
-#     if request.method == "POST":
-#         form = ModelFormWithFileField(request.POST, request.FILES)
-#         if form.is_valid():
-#             # file is saved
-#             form.save()
-#             return HttpResponseRedirect("/success/url/")
-#     else:
-#         form = ModelFormWithFileField()
-#     return render(request, "upload.html", {"form": form})
-
 # Create your views here.
 @login_required()
 def home(response):
@@ -82,8 +52,8 @@ class addCourse(CreateView):
 
         email = self.request.user.email
         send_mail(
-            'Subject: Successfully Created Course',
-            'text',
+            'Successfully Created Course',
+            'Your course has been successfully registered. Thanks for using EagleHire!',
             'BCEagleHire@gmail.com',
             [email],
             fail_silently=False
@@ -193,20 +163,6 @@ class CourseListView(ListView):
     context_object_name = 'courses'
 
 def InstructorSummaryView(response):
-    # model = Course
-    # template_name = 'main/Instructor_Summary.html'
-    # context_object_name = 'courses'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(InstructorSummaryView, self).get_context_data(**kwargs)
-    #     courses = Course().objects.filter(user = self.request.user)
-    #     apps = []
-    #     for course in courses:
-    #         apps.extend(course.application.all())
-    #     context['applications'] = apps
-
-    #     return context
-
     context = {}
     if response.method == "GET" :
         courses = Course.objects.filter(user = response.user)
