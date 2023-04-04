@@ -84,7 +84,7 @@ class addCourse(CreateView):
 		'BCEagleHire@gmail.com',
 		[email],
 		fail_silently=False,
-	}
+	)
 		
 
         return redirect('/home')
@@ -111,7 +111,7 @@ class CreateApplication(CreateView):
                 'BCEagleHire@gmail.com',
                 [email],
                 fail_silently=False,
-        }
+        )
 
         return redirect('/home')
 
