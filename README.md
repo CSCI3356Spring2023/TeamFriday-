@@ -4,9 +4,10 @@
 
 After cloning/pulling new changes, go into the `/TeamFriday-/oursite/` directory and make sure to: 
 
+- ```pip install django-environ```[(.env file for secret keys)](https://alicecampkin.medium.com/how-to-set-up-environment-variables-in-django-f3c4db78c55f)
 - ```pip install django-crispy-forms``` [(docs)](https://django-crispy-forms.readthedocs.io/en/latest/install.html)
 - ```pip install django-multiselectfield```[(docs)](https://pypi.org/project/django-multiselectfield/) 
-- ```pip install crispy-bootstrap4``` 
+- ```pip install crispy-bootstrap4``` [(docs)](https://getbootstrap.com/docs/4.0/getting-started/introduction/) 
 
 Otherwise you will run into an error when running the server. 
 Additionally, if you run into any backend related errors with our tables, see Migrations below to keep the db up to date.
