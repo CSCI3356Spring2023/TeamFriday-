@@ -80,14 +80,13 @@ class addCourse(CreateView):
         self.object.course_code = course_code
         self.object.save()
 
-	email
-	email = self.request.user.email
-	send_mail(
-	    'Subject: Successfully Created Course',
-		'text',
-		'BCEagleHire@gmail.com',
-		[email],
-		fail_silently=False,
+        email = self.request.user.email
+        send_mail(
+            'Subject: Successfully Created Course',
+            'text',
+            'BCEagleHire@gmail.com',
+            [email],
+            fail_silently=False
 	)
 		
 
