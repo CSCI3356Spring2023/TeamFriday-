@@ -77,7 +77,7 @@
                   </tr>
                 </thead>
                 <tbody>
-              {% if courses %}
+              {% comment %} {% if courses %} {% endcomment %}
                       <tr>
                       {% for course in courses%}
                           <td><h4>{{course.course_code}}</h4>
@@ -92,13 +92,13 @@
                       </tr>
                       {% endfor %}
                   </tbody>
-              {% else %}
+              {% comment %} {% else %} {% endcomment %}
                 <p>There are no courses.</p>
-              {% endif %}
+              {% comment %} {% endif %} {% endcomment %}
                 </table>
         </div>
     </div>
-{%else%}  
+{% comment %} {%else%}   {% endcomment %}
     <p>You are logged in as an admin.</p>
     <p> To begin, create a new course or application. </p>
     <a href="/create/course" class="btn btn-success">New course</a>
