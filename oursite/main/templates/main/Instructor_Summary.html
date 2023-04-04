@@ -16,16 +16,46 @@
 
 
 {%block content%}
-<h3>Applications</h3>
+<h3>Instructor Courses Summary</h3>
 {% if user.is_authenticated%}
-    <h2>{{applications}}</h2>
-    {% for course in courses%} 
-        <h2>{{course.course_code}}</h2>
-        {%if course.user == user%}
-            <h2>{{course.course_code}}</h2>
-            <p>{{course.applications.all}}</p>
-        {%endif%}
-    {%endfor%}
+    <p>Logged in as {{user}}</p>
+    <a href="/create/course" class="btn btn-success">New course</a>
+    <a href="/home/" class="btn btn-success">Home</a>
+    <h2>{{course.course_code}}</h2>
+    <div class="table-responsive-md">
+        <table class="table table-dark table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th scope="col"><h3>Courses</h3></th>
+                <th scope="col"><h3>Schedule</h3></th>
+                <th scope="col"><h3>Applications</h3></th>
+              </tr>
+            </thead>
+
+          {% if courses %}
+                  <tr>
+                  {% for course in courses%}
+                      {%if course.user == user%}
+                        <p>{{course.course_code}}</p>
+                        <!-- <td><h4>{{course.course_code}}</h4>
+                            <p>{{course.desc}}</p>
+                        </td>
+                        <td>{{course.positions}}</td>
+                        <td>
+                            <p>{{course.days}}:</p>
+                            <p>{{course.start_time}} - {{course.end_time}}</p>
+                        </td> -->
+                      {% else %}
+                        <p>There are no courses.</p>
+                      {%endif%}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          {% else %}
+            <p>There are no courses.</p>
+          {% endif %}
+            </table>
+    </div>
 {%else%}
     <h2>You do not have access to this page</h2>  
 {% endif %}
