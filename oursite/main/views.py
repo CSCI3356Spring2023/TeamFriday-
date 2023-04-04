@@ -81,7 +81,7 @@ class addCourse(CreateView):
 	send_mail(
 		'Subject: Successfully Created Course',
 		course_code,
-		'BCEagleHire@gmail.com'
+		'BCEagleHire@gmail.com',
 		email,
 		fail_silently=False,
 	}
@@ -102,6 +102,16 @@ class CreateApplication(CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
+
+	# email
+        email = self.request.user.email
+        send_mail(
+                'Subject: Successfully Created Application',
+                'text',
+                'BCEagleHire@gmail.com',
+                email,
+                fail_silently=False,
+        }
 
         return redirect('/home')
 
