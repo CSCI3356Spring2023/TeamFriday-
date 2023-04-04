@@ -80,9 +80,9 @@ class addCourse(CreateView):
 	email = self.request.user.email
 	send_mail(
 		'Subject: Successfully Created Course',
-		course_code,
+		'text',
 		'BCEagleHire@gmail.com',
-		email,
+		[email],
 		fail_silently=False,
 	}
 		
@@ -109,7 +109,7 @@ class CreateApplication(CreateView):
                 'Subject: Successfully Created Application',
                 'text',
                 'BCEagleHire@gmail.com',
-                email,
+                [email],
                 fail_silently=False,
         }
 
