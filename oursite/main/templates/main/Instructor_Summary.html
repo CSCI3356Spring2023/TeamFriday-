@@ -45,7 +45,7 @@
                         <td>
                           {%for app in course.applications.all %}
                             <ul>
-                              <li>{{app}}</li>
+                              <li><a href="/instructor_summary/application/{{app.id}}">{{app}}</a></li>
                             </ul>
                           {%endfor%}
                         </td>

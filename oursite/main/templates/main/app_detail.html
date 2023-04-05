@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+  <h1>{{ application }}</h1>
+
+  <p><strong>Student:</strong> <a href="">{{ application.user }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Previous Experience:</strong> {{ application.taken_prev }} {{ application.prev_desc }}</p>
+  <p><strong>Cover Letter:</strong> {{ application.coverl_desc }}</p>
+  <p><strong>Resume:</strong> I am highly qualified </p>
+
+{% endblock %}

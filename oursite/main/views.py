@@ -5,12 +5,10 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
-from django.views.generic import ListView
-from .models import Course
+from django.views.generic import ListView, CreateView, DetailView
 
-from .forms import UploadFileForm, addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
+from .forms import addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
 
 from django.core.mail import send_mail
@@ -173,4 +171,8 @@ def InstructorSummaryView(response):
         context['courses'] = courses
     return render(response, "main/Instructor_Summary.html",context)
 
+class ApplicationDetail(DetailView):
+    model = Application
+    template_name = 'main/app_detail.html'
 
+    
