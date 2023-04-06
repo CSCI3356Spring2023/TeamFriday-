@@ -4,9 +4,10 @@ from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, FileResponse
 from django.contrib.auth import login, authenticate
 from django.views.generic import ListView, CreateView, DetailView
+import os
 
 from .forms import addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
 from .models import User, Student, Instructor, Admin, Course, Application
@@ -175,4 +176,7 @@ class ApplicationDetail(DetailView):
     model = Application
     template_name = 'main/app_detail.html'
 
-    
+def show_pdf(request, pk):
+    application = Application.objects.get(id=pk)
+    resume = application.resume
+    return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
