@@ -60,6 +60,18 @@ class Application(models.Model):
     resume = models.FileField(default='',blank=True)
     coverl_desc = models.TextField(max_length=1000, default='test')
 
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
+    )
+
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='pending',
+    )
+
     def __str__(self):
         return 'Student-Application.' + str(self.id) + ': ' +  self.course_name
 
@@ -129,6 +141,19 @@ class Student(models.Model):
         default=FRESHMAN,
     )
     applications = models.ManyToManyField(Application, default='', blank=True)
+
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
+    )
+    
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='pending',
+    )
+
     def __str__(self):
         return self.firstname + ' ' + self.lastname
 
