@@ -151,12 +151,10 @@ class CreateApplicationForm(forms.ModelForm):
         super(CreateApplicationForm, self).__init__(*args, **kwargs)
     CSCI1101_01 = 'CS1 Section 1'
     CSCI1101_02 ='CS1 Section 2'
-    COURSE_CHOICES = [
-        (CSCI1101_01, 'CS1 Section 1'),
-        (CSCI1101_02, 'CS1 Section 2')
-    ]
+    
+    COURSE_CHOICES = []
 
-    course = forms.ChoiceField(label="Please select the course you're applying to", choices=COURSE_CHOICES)
+    course = forms.ModelChoiceField(label="Please select the course you're applying to", queryset=Course.objects.all())
     taken_prev = forms.ChoiceField(label='Have you taken this course before?', choices= (('yes', 'Yes'), ('no', 'No')))
     prev_desc = forms.CharField(
         label='Please state the professor and the semester you took this course. Otherwise N/A',

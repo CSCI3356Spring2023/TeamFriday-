@@ -110,7 +110,7 @@ class Course(models.Model):
     office_hours = models.CharField(max_length=1, choices=HOURS, default='2')
     desc = models.TextField(max_length=2000)
     def __str__(self):
-	    return 'ID: '+ str(self.id) + ' | ' + str(self.course_code)  
+	    return str(self.course_code)  
 
 # Student profile model
 # all info related to a student from d3 pdf.
