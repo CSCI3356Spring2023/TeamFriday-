@@ -147,17 +147,21 @@ class CreateApplication(CreateView):
 def apply(response, id):
     if response.method == "POST":
         form = CreateApplicationForm(response.POST, response.FILES)
+        user = response.user
+        student = Student.objects.get(user=user)
         course = Course.objects.get(id=id)
-        apps = Application.objects.filter(user=response.user)
+        apps = Application.objects.filter(user=user)
         app_count = len(apps)
 
         if form.is_valid() and app_count < 5:
-            application = Application(course_name = course.course_code, user=response.user)
+            application = Application(course_name = course.course_code, user=user)
             resume = response.FILES['resume']
             application.resume = resume
             application.save()
             course.applications.add(application)
+            student.applications.add(application)
             course.save()
+            student.save()
         else:
             return redirect('/apply/error/')
         return redirect('/home')
@@ -176,6 +180,18 @@ def InstructorSummaryView(response):
         context['applications'] = apps
         context['courses'] = courses
     return render(response, "main/Instructor_Summary.html",context)
+
+def student_apps(response):
+    context = {}
+
+    if response.method == "GET" :
+        user = response.user
+        student = Student.objects.get(user=user)
+        apps = student.applications.all()
+        context['applications'] = apps
+    return render(response, "main/student_apps.html",context)
+
+
 
 class ApplicationDetail(DetailView):
     model = Application
