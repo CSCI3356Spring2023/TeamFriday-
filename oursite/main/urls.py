@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path("", views.fp, name="front page"),
-    path("home/",login_required(views.CourseListView.as_view()),name="home page"),
+    path("home/", views.course_list,name="home page"),
     path("apply/<int:id>",views.apply, name="apply"),
     path("instructor_summary/",views.InstructorSummaryView, name="instructor_summary"),
     path("instructor_summary/application/<int:pk>", views.ApplicationDetail.as_view(), name="application detail"),

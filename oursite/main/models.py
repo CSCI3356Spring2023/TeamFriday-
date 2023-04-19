@@ -170,3 +170,8 @@ class Instructor(models.Model):
 
     def __str__(self):
         return self.firstname + ' ' + self.lastname
+
+class Semester(models.Model):
+    current = models.BooleanField(default=True)
+    status = models.CharField(max_length=5)
+    # add many to many fields later?
