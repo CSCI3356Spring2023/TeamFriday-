@@ -143,15 +143,15 @@ class Student(models.Model):
     applications = models.ManyToManyField(Application, default='', blank=True)
 
     STATUS_CHOICES = (
+        ('available', 'Available'),
         ('pending', 'Pending'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected'),
+        ('hired', 'Hired'),
     )
     
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
-        default='pending',
+        default='available',
     )
 
     def __str__(self):
