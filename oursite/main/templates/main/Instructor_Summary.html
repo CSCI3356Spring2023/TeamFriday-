@@ -44,9 +44,19 @@
                         </td>
                         <td>
                           {%for app in course.applications.all %}
+                            {% if app.status == 'pending' %}
+                              <ul>
+                                <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-warning">{{app.status}}</span></li>
+                              </ul>
+                            {% elif app.status == 'accepted'%}
+                              <ul>
+                                <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-success">{{app.status}}</span></li>
+                              </ul>
+                            {% else %}
                             <ul>
-                              <li><a href="/instructor_summary/application/{{app.id}}">{{app}}</a></li>
+                              <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-danger">{{app.status}}</span></li>
                             </ul>
+                            {%endif%}
                           {%endfor%}
                         </td>
                       {% else %}
