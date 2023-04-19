@@ -70,10 +70,15 @@ def home(response):
 def course_list(request):
     template_name = 'main/home.html'
     courses = Course.objects.all()
-    semester = Semester.objects.get(status='open')
-    if semester.current == False: return redirect('/admin')
+    semester = Semester.objects.get(current=True)
+    if semester.status == 'closed': return redirect('/error')
 
     return render(request, template_name, {'courses': courses} )
+
+def semester_error(request):
+    template_name = 'main/home.html' #- placeholder
+    return render(request, template_name, {})
+
 
 class app_error(ListView):
     model = Course

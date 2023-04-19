@@ -172,6 +172,10 @@ class Instructor(models.Model):
         return self.firstname + ' ' + self.lastname
 
 class Semester(models.Model):
+    STATUS_CHOICES = (
+        ('closed', 'Closed'),
+        ('open', 'Open'),
+    )
     current = models.BooleanField(default=True)
-    status = models.CharField(max_length=5)
+    status = models.CharField(max_length=6, choices=STATUS_CHOICES)
     # add many to many fields later?
