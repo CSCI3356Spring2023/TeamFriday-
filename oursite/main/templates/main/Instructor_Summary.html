@@ -44,11 +44,11 @@
                         </td>
                         <td>
                           {%for app in course.applications.all %}
-                            {% if app.status == 'pending' %}
+                            {% if app.status == 'Pending' %}
                               <ul>
                                 <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-warning">{{app.status}}</span></li>
                               </ul>
-                            {% elif app.status == 'accepted'%}
+                            {% elif app.status == 'Accepted'%}
                               <ul>
                                 <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-success">{{app.status}}</span></li>
                               </ul>

@@ -33,9 +33,9 @@
                   <tr style="text-align: center;">
                   {% for app in applications%}
                         <td><p>{{app.course_name}}</p></td>
-                        {% if app.status == 'pending' %}
+                        {% if app.status == 'Pending' %}
                         <td><span class="badge badge-warning">{{app.status}}</span><p></p></td>
-                        {% elif app.status == 'accepted'%}
+                        {% elif app.status == 'Accepted'%}
                         <td><span class="badge badge-success">{{app.status}}</span><p></p></td>
                         {% else %}
                         <td><span class="badge badge-danger">{{app.status}}</span><p></p></td>
