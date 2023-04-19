@@ -112,9 +112,9 @@ th {
   text-align: center;
 }
 
-a { color: inherit; }
+.logo-link { color: inherit; }
 
-a:hover {
+.logo-link:hover {
   color: inherit;
   text-decoration: none;
 }
