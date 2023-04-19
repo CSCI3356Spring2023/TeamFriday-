@@ -148,7 +148,7 @@ def apply(response, id):
     if response.method == "POST":
         form = CreateApplicationForm(response.POST, response.FILES)
         user = response.user
-        student = Student.objects.get(user=user)
+        if user.is_student: student = Student.objects.get(user=user)
         course = Course.objects.get(id=id)
         apps = Application.objects.filter(user=user)
         app_count = len(apps)
@@ -159,9 +159,10 @@ def apply(response, id):
             application.resume = resume
             application.save()
             course.applications.add(application)
-            student.applications.add(application)
             course.save()
-            student.save()
+            if user.is_student: 
+                student.applications.add(application)
+                student.save()
         else:
             return redirect('/apply/error/')
         return redirect('/home')

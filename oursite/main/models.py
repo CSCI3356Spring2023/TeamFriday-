@@ -61,15 +61,15 @@ class Application(models.Model):
     coverl_desc = models.TextField(max_length=1000, default='test')
 
     STATUS_CHOICES = (
-        ('pending', 'Pending'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected'),
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
     )
 
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
-        default='pending',
+        default='Pending',
     )
 
     def __str__(self):
