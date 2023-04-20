@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body { 
     /* background: url(https://images.unsplash.com/photo-1674420628423-bf7a338af32d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80) no-repeat center center fixed;  */
     background: url(https://images.squarespace-cdn.com/content/v1/5b02fe5ca9e028b65539cd7e/1531428740339-XJ3NOQLSMM8YGX3PX95O/02+Boston+College.jpg?format=2500w) no-repeat center center fixed;
