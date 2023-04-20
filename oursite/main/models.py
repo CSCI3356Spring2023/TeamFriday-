@@ -106,6 +106,7 @@ class Course(models.Model):
     start_time = models.TimeField(default=dt.time(00, 00))
     end_time = models.TimeField()
     positions = models.CharField(max_length=1, choices=HOURS, default='2')
+    filled = models.IntegerField(default='0')
     graded_hw = models.CharField(max_length=3, choices= CHOICE, default='no')
     office_hours = models.CharField(max_length=1, choices=HOURS, default='2')
     desc = models.TextField(max_length=2000)
