@@ -193,3 +193,16 @@ class Semester(models.Model):
 
     def __str__(self):
         return self.session + '-' + self.year
+
+
+class Notifications(models.Model):
+    STATE_CHOICES = (
+        ('offer sent', 'Offer Sent'),
+        ('rejected', 'Rejected'),
+        ('accepted offer', 'Accepted Offer'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
+    message = models.CharField(max_length=40)
+    link = models.CharField(max_length=40)
+    current = models.BooleanField(default=True)
+    application_status = models.CharField(max_length=15, choices=STATE_CHOICES)
