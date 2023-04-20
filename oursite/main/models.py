@@ -73,7 +73,11 @@ class Application(models.Model):
     )
 
     def __str__(self):
-        return 'Student-Application.' + str(self.id) + ': ' +  self.course_name
+        if self.user.is_student: 
+            student = Student.objects.get(user=self.user)
+            return self.course_name + ': ' + student.firstname + ' ' + student.lastname
+
+        return self.course_name + ': Test application'
 
 #-- Course data model
 class Course(models.Model):

@@ -63,7 +63,7 @@
                         <td>
                         {%for app in course.applications.all %}
                         {% if app.status == 'Pending' %}
-                            <a href="/instructor_summary" class="btn btn-success">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a>
+                            <p><a href="/instructor_summary" class="btn btn-success">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></p>
                             {% elif app.status == 'Accepted'%}
                               <ul>
                                 <li><span class="badge badge-success">{{app.status}}</span></li>
