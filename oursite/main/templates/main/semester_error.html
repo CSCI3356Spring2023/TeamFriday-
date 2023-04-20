@@ -43,12 +43,19 @@
           <h5 class="card-title">Thanks for visiting EagleHire!</h5>
 
           {% comment %} Case 1: The sign-up period is over. {% endcomment %}
-          <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p>
+
+          {% comment %} Ex 1) {% if semester_period < current_date or semester_period > current_date %}
+                        Ex 2) {% if !semester_period %} {% endcomment %}
+            <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p>
+            {% comment %} {% endif %} {% endcomment %}
 
           {% comment %} Case 2: There are no more courses left to be matched with. {% endcomment %}
-          <p class="card-text">All courses have been matched with a TA. Please apply again next semester.</p>
-          
+
+          {% comment %} {% if semester_period and total_positions == filled_positions %} {% endcomment %}
+            <p class="card-text">All courses have been matched with a TA. Please apply again next semester.</p>
+            {% comment %} {% endif %} {% endcomment %}
         </div>
+        
         {% comment %} <div class="card-footer text-muted">
         <a href="/accounts/signup/student" class="btn btn-success">New Student</a>
           <a href="/accounts/signup/instructor" class="btn btn-success">New Instructor</a>
