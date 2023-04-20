@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, FileResponse
 from django.contrib.auth import login, authenticate
 from django.views.generic import ListView, CreateView, DetailView
+from django.core.exceptions import ObjectDoesNotExist
 import os
 
 from .forms import addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
@@ -70,7 +71,10 @@ def home(response):
 def course_list(request):
     template_name = 'main/home.html'
     courses = Course.objects.all()
-    semester = Semester.objects.get(current=True)
+    try: 
+        semester = Semester.objects.get(current=True)
+    except ObjectDoesNotExist: 
+        return redirect('/error')
     if semester.status == 'closed': return redirect('/error')
 
     return render(request, template_name, {'courses': courses} )
