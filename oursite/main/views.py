@@ -80,9 +80,8 @@ def course_list(request):
     return render(request, template_name, {'courses': courses} )
 
 def semester_error(request):
-    template_name = 'main/home.html' #- placeholder
+    template_name = 'main/semester_error.html'
     return render(request, template_name, {})
-
 
 class app_error(ListView):
     model = Course

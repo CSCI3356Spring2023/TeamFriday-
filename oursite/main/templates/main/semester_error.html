@@ -8,29 +8,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
     <!-- External static css -->
-    <link rel="stylesheet" href="{% static 'styles.css'%}" />
-
-    <title>{%block title%}TA application website{%endblock%}</title>
+    <link rel="stylesheet" href="{% static 'styles2.css'%}" />
+    
+    <title>{%block title%}EagleHire{%endblock%}</title>
 </head>
 <body> 
     <div class="nav">
         <input type="checkbox" id="nav-check">
         <div class="logo-image">
-            <a class="logo-link" href="/"><img src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png" class="img-fluid">    
-            </a>
+            <img src="https://cdn.freebiesupply.com/logos/large/2x/boston-college-5-logo-png-transparent.png" class="img-fluid">    
         </div>
         <div class="nav-header">
-          <div class="nav-title"><a class='logo-link' href="/">EagleHire</a></div>
+            <div class="nav-title"><a href="/">EagleHire</a></div>
         </div>
-        {% block nav %}
-        {% endblock %}
       </div>
-
-
+    
 
     <div id="content", name="content", class="main">
         <div class="row justify-content-center"> 
             <div class="col-8 text-light">
+                <h1 class="mt-2"></h1>
                 <hr class="mt-0 mb-4">
                 {%block content%}
                 {%endblock%}
@@ -38,7 +35,27 @@
         </div>
     </div>
 
+    <div class="card text-white bg-secondary mb-3" style="width: 40rem;">
+        
+        {% comment %} <a href="/login" class="btn btn-primary">Already have an account? Login here to continue.</a> {% endcomment %}
+    
+        <div class="card-body">
+          <h5 class="card-title">Thanks for visiting EagleHire!</h5>
 
+          {% comment %} Case 1: The sign-up period is over. {% endcomment %}
+          <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p>
+
+          {% comment %} Case 2: There are no more courses left to be matched with. {% endcomment %}
+          <p class="card-text">All courses have been matched with a TA. Please apply again next semester.</p>
+          
+        </div>
+        {% comment %} <div class="card-footer text-muted">
+        <a href="/accounts/signup/student" class="btn btn-success">New Student</a>
+          <a href="/accounts/signup/instructor" class="btn btn-success">New Instructor</a>
+          <a href="/accounts/signup/admin" class="btn btn-success">New Admin</a>
+          
+        </div> {% endcomment %}
+      </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
