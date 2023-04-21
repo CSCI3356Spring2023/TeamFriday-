@@ -29,6 +29,15 @@ class StudentSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
 
+#	email = self.request.user.email
+#        send_mail(
+#                'Subject: Successfully Created Student User',
+#                'You have successfully registered as a student. Thanks for using EagleHire!',
+#                'BCEagleHire@gmail.com',
+#                [email],
+#                fail_silently=False,
+#        )	
+
         return redirect('/home')
 
 class InstructorSignUpView(CreateView):
@@ -44,6 +53,15 @@ class InstructorSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
 
+#	email = self.request.user.email
+#        send_mail(
+#                'Subject: Successfully Created Instructor User',
+#                'You have successfully registered as an instructor. Thanks for using EagleHire!',
+#                'BCEagleHire@gmail.com',
+#                [email],
+#                fail_silently=False,
+#        )
+
         return redirect('/home')
 
 class AdminSignUpView(CreateView):
@@ -58,6 +76,15 @@ class AdminSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
+	
+#	email = self.request.user.email
+#        send_mail(
+#                'Subject: Successfully Created Admin User',
+#                'You have successfully registered as an admin. Thanks for using EagleHire!',
+#                'BCEagleHire@gmail.com',
+#                [email],
+#                fail_silently=False,
+#        )	
 
         return redirect('/home')
     
@@ -139,7 +166,7 @@ class CreateApplication(CreateView):
         email = self.request.user.email
         send_mail(
                 'Subject: Successfully Created Application',
-                'text',
+                'Your application has been successfully created. Thanks for using EagleHire!',
                 'BCEagleHire@gmail.com',
                 [email],
                 fail_silently=False,
@@ -166,6 +193,15 @@ def apply(response, id):
             if user.is_student: 
                 student.applications.add(application)
                 student.save()
+
+#	email = self.request.user.email
+#        send_mail(
+#                'Subject: Successfully Applied',
+#                'You have successfully applied to a course. Thanks for using EagleHire!',
+#                'BCEagleHire@gmail.com',
+#                [email],
+#                fail_silently=False,
+#        )
         else:
             return redirect('/apply/error/')
         return redirect('/home')
