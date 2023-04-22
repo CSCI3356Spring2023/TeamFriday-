@@ -37,7 +37,9 @@
     <div class="card text-white bg-secondary mb-3" style="width: 40rem;">    
         <div class="card-body">
           <h5 class="card-title">Thanks for visiting EagleHire!</h5>
-            {% if semester.status == 'open' and semester.total_positions == semester.total_filled %}
+            {% if semester ==  None %}
+              <p class="card-text">The TA application sign-up period for the current semester is over.<br>Please apply again next semester.</p>
+            {% elif semester.status == 'open' and semester.total_positions == semester.total_filled %}
               <p class="card-text">All courses have been matched with a TA. Please apply again next semester.</p>
             {% else %}
               <p class="card-text">The TA application sign-up period for the current semester is over.<br>Please apply again next semester.</p>

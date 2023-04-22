@@ -100,17 +100,16 @@ def course_list(request):
     courses = Course.objects.all()
     try: 
         semester = Semester.objects.get(current=True)
-    except ObjectDoesNotExist: 
-        return redirect('/error')
-    if semester.status == 'closed' or semester.total_positions == semester.total_filled: return semester_error(request)
+    except ObjectDoesNotExist:
+        semester = None 
+        return semester_error(request, semester)
+    if semester.status == 'closed' or semester.total_positions == semester.total_filled: 
+        return semester_error(request, semester)
+    
     return render(request, template_name, {'courses': courses} )
 
-def semester_error(request):
+def semester_error(request, semester):
     template_name = 'main/semester_error.html'
-    try: 
-        semester = Semester.objects.get(current=True)
-    except ObjectDoesNotExist: 
-        return redirect('/admin') 
     return render(request, template_name, {"semester": semester})
 
 class app_error(ListView):
