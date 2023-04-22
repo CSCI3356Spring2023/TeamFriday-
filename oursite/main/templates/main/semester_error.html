@@ -46,14 +46,16 @@
 
           {% comment %} Ex 1) {% if semester_period < current_date or semester_period > current_date %}
                         Ex 2) {% if !semester_period %} {% endcomment %}
-            <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p>
+            {% comment %} <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p> {% endcomment %}
             {% comment %} {% endif %} {% endcomment %}
 
           {% comment %} Case 2: There are no more courses left to be matched with. {% endcomment %}
 
-          {% comment %} {% if semester_period and total_positions == filled_positions %} {% endcomment %}
+          {% if semester.total_positions == semester.total_filled %}
             <p class="card-text">All courses have been matched with a TA. Please apply again next semester.</p>
-            {% comment %} {% endif %} {% endcomment %}
+          {% else %}
+            <p class="card-text">The TA application sign-up period for the current semester is over. Please apply again next semester.</p>
+          {% endif %}
         </div>
         
         {% comment %} <div class="card-footer text-muted">
