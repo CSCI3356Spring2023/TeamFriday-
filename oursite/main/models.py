@@ -189,7 +189,7 @@ class Semester(models.Model):
     )
     current = models.BooleanField(default=True)
     status = models.CharField(max_length=6, choices=STATUS_CHOICES)
-    total_postitions = models.IntegerField(default=10)
+    total_positions = models.IntegerField(default=10)
     total_filled = models.IntegerField(default=0)
     # add many to many fields later?
 
