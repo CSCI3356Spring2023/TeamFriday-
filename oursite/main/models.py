@@ -57,7 +57,7 @@ class Application(models.Model):
         default= 'No'
     )
     prev_desc = models.CharField(max_length=200, default='test') # Previous experience description
-    resume = models.FileField(default='',blank=True)
+    resume = models.FileField(default='',blank=True, upload_to='resumes/')
     coverl_desc = models.TextField(max_length=1000, default='test')
 
     STATUS_CHOICES = (
