@@ -25,16 +25,18 @@
     <p> To begin, create a new course. </p>
     <a href="/create/course" class="btn btn-success">New course</a>
     <div class="course-summary">
-        <h1 class="display-4">Created Courses</h1> 
+        <h1 class="display-4">Open Courses</h1> 
         <div class="table-responsive-md">
             <table class="table table-dark table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th scope="col" style="width: 30%;"><h3>Course</h3></th>
+                    <th class="col-sm-3"></th>
                     <th scope="col"><h3>Positions</h3></th>
-                    <th scope="col" style="width: 20%;"><h3>Schedule</h3></th>
+                    <th class="col-sm-2"><h3>Schedule</h3></th>
                     <th scope="col"><h3>Discussion</h3></th>
-                    <th scope="col"><h3>Action</h3></th>
+                    <th class="col-sm-2"><h3>Graded Hw</h3></th>
+                    <th class="col-sm-2"><h3>Office hours</h3></th>
+                    <th class="col-sm-1"><h3>Action</h3></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,15 +69,18 @@
     <a href="/create/application" class="btn btn-success">New application</a>
    
     <div class="course-summary">
-        <h1 class="display-4">Created Courses</h1> 
+        <h1 class="display-4">Open Courses</h1> 
         <div class="table-responsive-md">
             <table class="table table-dark table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th scope="col" style="width: 30%;"><h3>Course</h3></th>
+                    <th class="col-sm-3"></th>
                     <th scope="col"><h3>Positions</h3></th>
-                    <th scope="col" style="width: 20%;"><h3>Schedule</h3></th>
-                    <th scope="col"><h3>Action</h3></th>
+                    <th class="col-sm-2"><h3>Schedule</h3></th>
+                    <th scope="col"><h3>Discussion</h3></th>
+                    <th class="col-sm-2"><h3>Graded Hw</h3></th>
+                    <th class="col-sm-2"><h3>Office hours</h3></th>
+                    <th class="col-sm-1"><h3>Action</h3></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -108,18 +113,18 @@
     <a href="/admin" class="btn btn-primary">Admin</a>
     
     <div class="course-summary">
-        <h1 class="display-4">Created Courses</h1> 
+        <h1 class="display-4">Open Courses</h1> 
         <div class="table-responsive-md">
             <table class="table table-dark table-striped table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th scope="col" style="width: 50%;"><h3>Course</h3></th>
+                    <th class="col-sm-3"></th>
                     <th scope="col"><h3>Positions</h3></th>
-                    <th scope="col" style="width: 20%;"><h3>Schedule</h3></th>
+                    <th class="col-sm-2"><h3>Schedule</h3></th>
                     <th scope="col"><h3>Discussion</h3></th>
-                    <th scope="col"><h3>Graded Hw</h3></th>
-                    <th scope="col"><h3>Office hours/week</h3></th>
-                    <th scope="col"><h3>Action</h3></th>
+                    <th class="col-sm-2"><h3>Graded Hw</h3></th>
+                    <th class="col-sm-2"><h3>Office hours</h3></th>
+                    <th class="col-sm-1"><h3>Action</h3></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,7 +141,7 @@
                           </td>
                           <td>{{course.disc_flag}}</td>
                           <td>{{course.graded_hw}}</td>
-                          <td>{{course.office_hours}}</td>
+                          <td>{{course.office_hours}} per week</td>
                           <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}
