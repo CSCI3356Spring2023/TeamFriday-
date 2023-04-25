@@ -46,13 +46,8 @@
                           <td><h4>{{course.course_code}}</h4>
                             <p>{{course.desc}}</p>
                           </td>
-                          <td>{{course.filled}}/{{course.positions}}</td>
-                          <td>
-                            <ul class="list-inline">
-                              {% for day in course.days%}
-                              <li>day</li>
-                              {% endfor %}
-                            </ul>
+                          <td style="text-align: center;">{{course.filled}}/{{course.positions}}</td>
+                          <td style="text-align: center;">
                             <p>
                               {% for day in course.days%}
                               <span class="badge badge-light">{{day}}</span>
@@ -61,8 +56,10 @@
                             </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
-                          <td>{{course.disc_flag}}</td>
-                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                          <td style="text-align: center;">{{course.disc_flag}}</td>
+                          <td style="text-align: center;">{{course.graded_hw}}</td>
+                          <td style="text-align: center;">{{course.office_hours}} per week</td>
+                          <td style="text-align: center;"><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}
                   </tbody>
@@ -100,8 +97,8 @@
                           <td><h4>{{course.course_code}}</h4>
                             <p>{{course.desc}}</p>
                           </td>
-                          <td>{{course.filled}}/{{course.positions}}</td>
-                          <td>
+                          <td style="text-align: center;">{{course.filled}}/{{course.positions}}</td>
+                          <td style="text-align: center;">
                             <p>
                               {% for day in course.days%}
                               <span class="badge badge-light">{{day}}</span>
@@ -110,7 +107,10 @@
                             </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
-                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                          <td style="text-align: center;">{{course.disc_flag}}</td>
+                          <td style="text-align: center;">{{course.graded_hw}}</td>
+                          <td style="text-align: center;">{{course.office_hours}} per week</td>
+                          <td style="text-align: center;"><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}
                   </tbody>
@@ -149,8 +149,8 @@
                           <td><h4>{{course.course_code}}</h4>
                             <p>{{course.desc}}</p>
                           </td>
-                          <td>{{course.filled}}/{{course.positions}}</td>
-                          <td>
+                          <td style="text-align: center;">{{course.filled}}/{{course.positions}}</td>
+                          <td style="text-align: center;">
                             <p>
                               {% for day in course.days%}
                               <span class="badge badge-light">{{day}}</span>
@@ -159,10 +159,10 @@
                             </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
-                          <td>{{course.disc_flag}}</td>
-                          <td>{{course.graded_hw}}</td>
-                          <td>{{course.office_hours}} per week</td>
-                          <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
+                          <td style="text-align: center;">{{course.disc_flag}}</td>
+                          <td style="text-align: center;">{{course.graded_hw}}</td>
+                          <td style="text-align: center;">{{course.office_hours}} per week</td>
+                          <td style="text-align: center;"><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
                       </tr>
                       {% endfor %}
                   </tbody>
