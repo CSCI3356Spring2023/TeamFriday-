@@ -48,7 +48,17 @@
                           </td>
                           <td>{{course.filled}}/{{course.positions}}</td>
                           <td>
-                            <p>{{course.days}}:</p>
+                            <ul class="list-inline">
+                              {% for day in course.days%}
+                              <li>day</li>
+                              {% endfor %}
+                            </ul>
+                            <p>
+                              {% for day in course.days%}
+                              <span class="badge badge-light">{{day}}</span>
+                              {% endfor %}
+                              :
+                            </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
                           <td>{{course.disc_flag}}</td>
@@ -92,7 +102,12 @@
                           </td>
                           <td>{{course.filled}}/{{course.positions}}</td>
                           <td>
-                            <p>{{course.days}}:</p>
+                            <p>
+                              {% for day in course.days%}
+                              <span class="badge badge-light">{{day}}</span>
+                              {% endfor %}
+                              :
+                            </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
                           <td><a href="/apply/{{course.id}}" class="btn btn-success">Apply</a></td>
@@ -136,7 +151,12 @@
                           </td>
                           <td>{{course.filled}}/{{course.positions}}</td>
                           <td>
-                            <p>{{course.days}}:</p>
+                            <p>
+                              {% for day in course.days%}
+                              <span class="badge badge-light">{{day}}</span>
+                              {% endfor %}
+                              :
+                            </p>
                             <p>{{course.start_time}} - {{course.end_time}}</p>
                           </td>
                           <td>{{course.disc_flag}}</td>

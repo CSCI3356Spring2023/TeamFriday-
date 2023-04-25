@@ -40,7 +40,12 @@
                       {%if course.user == user%}
                         <td><p>{{course.course_code}}</p></td>
                         <td>
-                          <p>{{course.days}}:</p>
+                          <p>
+                            {% for day in course.days%}
+                            <span class="badge badge-light">{{day}}</span>
+                            {% endfor %}
+                            :
+                          </p>
                           <p>{{course.start_time}} - {{course.end_time}}</p>
                         </td>
                         <td>

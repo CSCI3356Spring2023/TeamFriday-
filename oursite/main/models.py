@@ -90,11 +90,11 @@ class Course(models.Model):
     course_code= models.CharField(max_length=60, default='TEST0000.0: default_code')
     applications = models.ManyToManyField(Application, default='', blank=True)
     DAYS_CHOICES = (
-		('M', 'Monday'),
-		('T', 'Tuesday'),
-		('W', 'Wednesday'),
-		('TH', 'Thursday'),
-		('F', 'Friday'),
+		('M', 'M'),
+		('T', 'T'),
+		('W', 'W'),
+		('TH', 'T'),
+		('F', 'F'),
 	)
     CHOICE = (('yes', 'Yes'),
                  ('no', 'No'))
