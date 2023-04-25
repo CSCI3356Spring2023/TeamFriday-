@@ -65,9 +65,9 @@ body {
   .nav > .nav-links > ul li a{
     display: block;
     padding: 0 8px;
-    color: #231f20;
-    line-height: 40px;
-    font-size: 18px;
+    color: #fff;
+    line-height: 60px;
+    font-size: 20px;
     text-decoration: none;
   }
   .nav > .nav-links > ul{
@@ -75,30 +75,31 @@ body {
     margin-top: 5px;
     list-style: none;
     position: relative;
+    left: 30px;
+    bottom: 5px;
   }
   .nav > .nav-links > ul li{
     display: inline-block;
-    background-color: #e0dae1;
+    background-color: #73131d;
     
   }
 
   .nav > .nav-links > ul li:hover{
       background-color: #f9a03a;
-      border-radius: 5px;
   }
   
   .nav > #nav-check {
     display: none;
   }
 
- .nav .nav-links ul a.icon{
+ /* .nav .nav-links ul a.icon{
  margin-left: 80px;
  margin-right: 10px;
- }
+ } */
 
  .nav .nav-links ul a i{
-    background-color: #fff;
-    border-radius: 50px;
+    /* background-color: #73131d;
+    border-radius: 70px; */
     padding: 7px;
     margin-left: 5px;
  }
