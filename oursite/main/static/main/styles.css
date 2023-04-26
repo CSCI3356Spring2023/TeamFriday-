@@ -18,6 +18,12 @@ body {
   border-color: #aa0000;
 }
 
+.btn-success.disabled{
+  color: #fff;
+  background-color: #aa0000;
+  border-color: #aa0000;
+}
+
 .btn:hover{
   background-color: #EC7979;
   border-color: #EC7979;
