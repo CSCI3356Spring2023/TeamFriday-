@@ -58,33 +58,32 @@
                           {%for app in course.applications.all %}
                             {% if app.status == 'Pending' %}
                               <ul>
-                                <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-warning">{{app.status}}</span></li>
+                                <li style="margin-top: 10px;"><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-warning">{{app.status}}</span></li>
                               </ul>
                             {% elif app.status == 'Accepted'%}
                               <ul>
-                                <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-success">{{app.status}}</span></li>
+                                <li style="margin-top: 10px;"><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-success">{{app.status}}</span></li>
                               </ul>
                             {% else %}
                             <ul>
-                              <li><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-danger">{{app.status}}</span></li>
+                              <li style="margin-top: 10px;"><a href="/instructor_summary/application/{{app.id}}">{{app}}&emsp;</a><span class="badge badge-danger">{{app.status}}</span></li>
                             </ul>
                             {%endif%}
                           {%endfor%}
                         </td>
                         <td>
+                          <ul>
                         {%for app in course.applications.all %}
+                          
                         {% if app.status == 'Pending' %}
-                            <p><a href="/instructor_summary" class="btn btn-success">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></p>
+                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></li>
                             {% elif app.status == 'Accepted'%}
-                              <ul>
-                                <li><span class="badge badge-success">{{app.status}}</span></li>
-                              </ul>
+                              <li style="margin-top: 5px;"><span class="badge badge-success">{{app.status}}</span></li>
                             {% else %}
-                            <ul>
-                              <li><span class="badge badge-danger">{{app.status}}</span></li>
-                            </ul>
+                              <li style="margin-top: 5px;"><span class="badge badge-danger">{{app.status}}</span></li>
                             {%endif%}
                           {%endfor%}
+                          </ul>
                       </td>
                       {% else %}
                         <td><p>There are no courses.</p></td>
