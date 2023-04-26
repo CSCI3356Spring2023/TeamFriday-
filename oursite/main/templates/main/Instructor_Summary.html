@@ -35,8 +35,8 @@
               <tr>
                 <th scope="col"><h3>Courses</h3></th>
                 <th scope="col"><h3>Schedule</h3></th>
-                <th scope="col"><h3>Applications</h3></th>
-                <th scope="col" style='width: 20%;'><h3>Actions</h3></th>
+                <th scope="col" class="col-sm-4"><h3>Applications</h3></th>
+                <th scope="col"><h3>Actions</h3></th>
               </tr>
             </thead>
 
@@ -45,7 +45,7 @@
                   {% for course in courses%}
                       {%if course.user == user%}
                         <td><p>{{course.course_code}}</p></td>
-                        <td>
+                        <td style="text-align: center;">
                           <p>
                             {% for day in course.days%}
                             <span class="badge badge-light">{{day}}</span>
@@ -54,7 +54,7 @@
                           </p>
                           <p>{{course.start_time}} - {{course.end_time}}</p>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                           {%for app in course.applications.all %}
                             {% if app.status == 'Pending' %}
                               <ul>
@@ -71,7 +71,7 @@
                             {%endif%}
                           {%endfor%}
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                           <ul>
                         {%for app in course.applications.all %}
                           
