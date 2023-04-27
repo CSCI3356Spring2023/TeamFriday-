@@ -83,7 +83,7 @@
                               <p>
                                 <span class="badge badge-success">{{app.status}}</span></li>
                               </p>
-                            {% elif app.status == 'Rejected' %}
+                            {% elif app.status == 'Rejected' or app.status == 'Unavailable' %}
                               <p>
                                 <span class="badge badge-danger">{{app.status}}</span></li>
                               </p>
@@ -97,12 +97,12 @@
                         <td style="text-align: center;">
                           <ul>
                         {%for app in course.applications.all %}
-                        {% if app.status == 'Pending' %}
-                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></li>
-                            {% elif app.status == 'Accepted'%}
+                        {% if app.status == 'Accepted' or app.status == 'Rejected' %}
                             <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a></li>
-                            {% else %}
+                        {% elif app.status == 'Pending' or app.status == 'Unavailable'%}
                             <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a></li>
+                        {% else %}
+                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success ">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></li>
                             {%endif%}
                           {%endfor%}
                           </ul>
