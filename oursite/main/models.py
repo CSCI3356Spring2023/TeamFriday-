@@ -45,7 +45,6 @@ class Application(models.Model):
         (CSCI1101_01, 'CS1 Section 1'),
         (CSCI1101_02, 'CS1 Section 2')
     ]
-    
     course_name = models.CharField(
         max_length=20,
         choices=COURSE_CHOICES,
@@ -61,18 +60,20 @@ class Application(models.Model):
     coverl_desc = models.TextField(max_length=1000, default='test')
 
     STATUS_CHOICES = (
-        ('Open', 'Open'),
+        ('Available', 'Available'),
         ('Pending', 'Pending'),
+        ('Unavailable', 'Unavailable'),
         ('Accepted', 'Accepted'),
         ('Rejected', 'Rejected'),
     )
 
     status = models.CharField(
-        max_length=10,
+        max_length=15,
         choices=STATUS_CHOICES,
-        default='Open',
+        default='Available',
     )
-
+    offer = models.BooleanField(default=False)
+    
     def __str__(self):
         if self.user.is_student: 
             student = Student.objects.get(user=self.user)
@@ -149,9 +150,9 @@ class Student(models.Model):
     applications = models.ManyToManyField(Application, default='', blank=True)
 
     STATUS_CHOICES = (
-        ('available', 'Available'),
-        ('pending', 'Pending'),
-        ('hired', 'Hired'),
+        ('Available', 'Available'),
+        ('Pending', 'Pending'),
+        ('Hired', 'Hired'),
     )
     
     status = models.CharField(

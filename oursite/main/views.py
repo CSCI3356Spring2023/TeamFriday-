@@ -219,6 +219,13 @@ def InstructorSummaryView(response):
         apps = []
         for course in courses:
             apps.extend(course.applications.all())
+        for app in apps:
+            if app.user.is_student:
+                student = Student.objects.get(user=app.user)
+                if student.status == 'Hired': app.status = 'Unavailable'
+                elif student.status == 'Pending': app.status = 'Pending'
+                else: app.status = 'Available'
+                app.save()
         context['applications'] = apps
         context['courses'] = courses
     return render(response, "main/Instructor_Summary.html",context)
@@ -230,6 +237,14 @@ def student_apps(response):
         user = response.user
         student = Student.objects.get(user=user)
         apps = student.applications.all()
+        for app in apps:
+            if app.user.is_student:
+                student = Student.objects.get(user=app.user)
+                if student.status == 'Hired': app.status = 'Unavailable'
+                elif student.status == 'Pending': app.status = 'Pending'
+                else: app.status = 'Available'
+                app.save()
+
         context['applications'] = apps
     return render(response, "main/student_apps.html",context)
 
