@@ -206,7 +206,7 @@ def apply(response, id):
 #        )
         else:
             return redirect('/apply/error/')
-        return redirect('/home')
+        return redirect('/applications')
     else:
             form = CreateApplicationForm()
 

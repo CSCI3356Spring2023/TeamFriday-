@@ -36,22 +36,24 @@
             </thead>
 
           {% if applications %}
-                  <tr style="text-align: center;">
+                  <tr>
                   {% for app in applications%}
-                        <td><p>{{app.course_name}}</p></td>
+                        <td style="text-align: center;"><p>{{app.course_name}}</p></td>
                         {% if app.status == 'Pending' %}
-                        <td><span class="badge badge-warning">{{app.status}}</span><p></p></td>
+                        <td style="text-align: center;"><span class="badge badge-warning">{{app.status}}</span><p></p></td>
                         {% elif app.status == 'Accepted'%}
-                        <td><span class="badge badge-success">{{app.status}}</span><p></p></td>
+                        <td style="text-align: center;"><span class="badge badge-success">{{app.status}}</span><p></p></td>
+                        {% elif app.status == 'Rejected'%}
+                        <td style="text-align: center;"><span class="badge badge-danger">{{app.status}}</span><p></p></td>
                         {% else %}
-                        <td><span class="badge badge-danger">{{app.status}}</span><p></p></td>
+                        <td style="text-align: center;"><span class="badge badge-light">{{app.status}}</span><p></p></td>
                         {%endif%}
-                        <td><p>test</p></td>
+                        <td style="text-align: center;"><p>test</p></td>
                   </tr>
                   {% endfor %}
               </tbody>
           {% else %}
-            <p>{{applications}}</p>
+            <p>You current have no applications.</p>
           {% endif %}
             </table>
     </div>
