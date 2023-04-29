@@ -98,11 +98,11 @@
                           <ul>
                         {%for app in course.applications.all %}
                         {% if app.status == 'Accepted' or app.status == 'Rejected' %}
-                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a></li>
+                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Reject</a></li>
                         {% elif app.status == 'Pending' or app.status == 'Unavailable'%}
-                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a></li>
+                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success disabled">Send Offer</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Reject</a></li>
                         {% else %}
-                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success ">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Decline</a></li>
+                            <li style="margin-top: 5px;"><a href="/instructor_summary" class="btn btn-success ">Send Offer</a><a href="/instructor_summary" class="btn btn-success" style="margin-left: 10px;">Reject</a></li>
                             {%endif%}
                           {%endfor%}
                           </ul>
