@@ -61,7 +61,6 @@ class Application(models.Model):
 
     STATUS_CHOICES = (
         ('Available', 'Available'),
-        ('Pending', 'Pending'),
         ('Unavailable', 'Unavailable'),
         ('Accepted', 'Accepted'),
         ('Rejected', 'Rejected'),
@@ -72,7 +71,7 @@ class Application(models.Model):
         choices=STATUS_CHOICES,
         default='Available',
     )
-    offer = models.BooleanField(default=False)
+    offer_flag = models.BooleanField(default=False)
     
     def __str__(self):
         if self.user.is_student: 
