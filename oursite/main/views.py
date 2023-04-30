@@ -226,7 +226,7 @@ def InstructorSummaryView(response):
                     if app.offer_flag: app.status = 'Accepted'
                     else: app.status = 'Unavailable'
                 elif student.status == 'Pending': app.status = 'Pending'
-                elif student.status == 'Available': app.status = 'Available'
+                elif student.status == 'Available' and app.status != 'Rejected': app.status = 'Available'
                 app.save()
         context['applications'] = apps
         context['courses'] = courses
@@ -246,7 +246,7 @@ def student_apps(response):
                     if app.offer_flag: app.status = 'Accepted'
                     else: app.status = 'Unavailable'
                 elif student.status == 'Pending': app.status = 'Pending'
-                elif student.status == 'Available': app.status = 'Available'
+                elif student.status == 'Available' and app.status != 'Rejected': app.status = 'Available'
                 app.save()
         context['applications'] = apps
     return render(response, "main/student_apps.html",context)
@@ -279,13 +279,13 @@ def sendOffer(response, pk):
     application.offer_flag = True
     application.save()
     student_user.save()
-    return render(response, "main/Instructor_Summary.html")
+    return redirect('/instructor_summary')
 
-def rejectOffer(response, pk):
+def rejectApp(response, pk):
     application = Application.objects.get(id=pk)
     student_user = application.user
     student_user.status = 'Available'
     application.status = 'Rejected'
     application.save()
     student_user.save()
-    return render(response, "main/Instructor_Summary.html")
+    return redirect('/instructor_summary')
