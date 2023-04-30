@@ -279,7 +279,7 @@ def sendOffer(response, pk):
     application.offer_flag = True
     application.save()
     student_user.save()
-    return render(response, "main/student_apps.html")
+    return render(response, "main/Instructor_Summary.html")
 
 def rejectOffer(response, pk):
     application = Application.objects.get(id=pk)
@@ -288,4 +288,4 @@ def rejectOffer(response, pk):
     application.status = 'Rejected'
     application.save()
     student_user.save()
-    return render(response, "main/student_apps.html")
+    return render(response, "main/Instructor_Summary.html")
