@@ -199,7 +199,7 @@ class Semester(models.Model):
         return self.session + '-' + self.year
 
 
-class Notifications(models.Model):
+class Notification(models.Model):
     STATE_CHOICES = (
         ('offer sent', 'Offer Sent'),
         ('rejected', 'Rejected'),

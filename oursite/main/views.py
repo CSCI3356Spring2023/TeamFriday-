@@ -11,7 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import os
 
 from .forms import addCourseForm, StudentSignUpForm, InstructorSignUpForm, AdminSignUpForm, CreateApplicationForm
-from .models import User, Student, Instructor, Admin, Course, Application, Semester
+from .models import User, Student, Instructor, Admin, Course, Application, Semester, Notification
 
 from django.core.mail import send_mail
 
@@ -235,7 +235,7 @@ def InstructorSummaryView(response):
 def student_apps(response):
     context = {}
 
-    if response.method == "GET" :
+    if response.method == "GET":
         user = response.user
         student = Student.objects.get(user=user)
         apps = student.applications.all()
@@ -251,8 +251,6 @@ def student_apps(response):
         context['applications'] = apps
     return render(response, "main/student_apps.html",context)
 
-
-
 class ApplicationDetail(DetailView):
     model = Application
     template_name = 'main/app_detail.html'
@@ -261,3 +259,16 @@ def show_pdf(request, pk):
     application = Application.objects.get(id=pk)
     resume = application.resume
     return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
+
+def notification_list(response):
+    context = {}
+
+    if response.method == "GET":
+        user = response.user
+        notifications = Notification.objects.filter(user=user)
+
+        context['notifications'] = notifications
+
+    
+    return render(response, "main/notifications.html", context)
+

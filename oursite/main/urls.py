@@ -14,5 +14,6 @@ urlpatterns = [
     path("instructor_summary/application/resume/<int:pk>", views.show_pdf, name="application detail"),
     path("apply/error/",login_required(views.app_error.as_view()),name="apply error"),
     path("error/",views.semester_error, name='Semester error'),
-    path("applications/", views.student_apps, name='Student applications')
+    path("applications/", views.student_apps, name='Student applications'),
+    path("notifications/", views.notification_list, name='notifications')
 ]
