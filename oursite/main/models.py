@@ -1,6 +1,6 @@
 from django import forms
 import datetime as dt
-
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -206,7 +206,6 @@ class Notifications(models.Model):
         ('accepted offer', 'Accepted Offer'),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
+    timestamp = models.TimeField(auto_now_add=True)
     message = models.CharField(max_length=40)
-    link = models.CharField(max_length=40)
-    current = models.BooleanField(default=True)
-    application_status = models.CharField(max_length=15, choices=STATE_CHOICES)
+    seen = models.BooleanField(default=False)
