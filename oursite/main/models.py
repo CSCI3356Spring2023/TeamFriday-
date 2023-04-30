@@ -39,6 +39,7 @@ class Admin(models.Model):
 #-- Application data model
 class Application(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
+    related_course = models.ForeignKey('Course', on_delete=models.CASCADE, primary_key=False, related_name='course', default='', blank=True)
     CSCI1101_01 = 'CS1 Section 1'
     CSCI1101_02 ='CS1 Section 2'
     COURSE_CHOICES = [
