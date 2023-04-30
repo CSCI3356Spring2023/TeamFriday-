@@ -222,9 +222,11 @@ def InstructorSummaryView(response):
         for app in apps:
             if app.user.is_student:
                 student = Student.objects.get(user=app.user)
-                if student.status == 'Hired': app.status = 'Unavailable'
+                if student.status == 'Hired': 
+                    if app.offer_flag: app.status = 'Accepted'
+                    else: app.status = 'Unavailable'
                 elif student.status == 'Pending': app.status = 'Pending'
-                else: app.status = 'Available'
+                elif student.status == 'Available': app.status = 'Available'
                 app.save()
         context['applications'] = apps
         context['courses'] = courses
@@ -240,11 +242,12 @@ def student_apps(response):
         for app in apps:
             if app.user.is_student:
                 student = Student.objects.get(user=app.user)
-                if student.status == 'Hired': app.status = 'Unavailable'
+                if student.status == 'Hired': 
+                    if app.offer_flag: app.status = 'Accepted'
+                    else: app.status = 'Unavailable'
                 elif student.status == 'Pending': app.status = 'Pending'
-                else: app.status = 'Available'
+                elif student.status == 'Available': app.status = 'Available'
                 app.save()
-
         context['applications'] = apps
     return render(response, "main/student_apps.html",context)
 
