@@ -274,18 +274,18 @@ def notification_list(response):
 
 def sendOffer(response, pk):
     application = Application.objects.get(id=pk)
-    student_user = application.user
-    student_user.status = 'Pending'
+    student = Student.objects.get(user=application.user) 
+    student.status = 'Pending'
     application.offer_flag = True
     application.save()
-    student_user.save()
+    student.save()
     return redirect('/instructor_summary')
 
 def rejectApp(response, pk):
     application = Application.objects.get(id=pk)
-    student_user = application.user
-    student_user.status = 'Available'
+    student = Student.objects.get(user=application.user) 
+    student.status = 'Available'
     application.status = 'Rejected'
     application.save()
-    student_user.save()
+    student.save()
     return redirect('/instructor_summary')
