@@ -272,3 +272,20 @@ def notification_list(response):
     
     return render(response, "main/notifications.html", context)
 
+def sendOffer(response, pk):
+    application = Application.objects.get(id=pk)
+    student_user = application.user
+    student_user.status = 'Pending'
+    application.offer_flag = True
+    application.save()
+    student_user.save()
+    return render(response, "main/student_apps.html")
+
+def rejectOffer(response, pk):
+    application = Application.objects.get(id=pk)
+    student_user = application.user
+    student_user.status = 'Available'
+    application.status = 'Rejected'
+    application.save()
+    student_user.save()
+    return render(response, "main/student_apps.html")
