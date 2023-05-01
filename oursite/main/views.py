@@ -259,7 +259,6 @@ def show_pdf(request, pk):
     application = Application.objects.get(id=pk)
     resume = application.resume
     return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
-
 def notification_list(response):
     context = {}
 
@@ -271,6 +270,15 @@ def notification_list(response):
 
     
     return render(response, "main/notifications.html", context)
+
+
+def accept_offer(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    student = application.user
+    course = application.related_course
+    student.status = 'Hired'
+    application.status = 'Accepted'
+    course.filled += 1
 
 def sendOffer(response, pk):
     application = Application.objects.get(id=pk)
