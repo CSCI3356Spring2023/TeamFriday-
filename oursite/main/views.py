@@ -280,6 +280,17 @@ def accept_offer(request, application_id):
     application.status = 'Accepted'
     course.filled += 1
 
+def reject_offer(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    student = application.user
+    
+    student.save()
+    application.save()
+
+    return redirect('/instructor_summary')
+
+
+
 def sendOffer(response, pk):
     application = Application.objects.get(id=pk)
     student = Student.objects.get(user=application.user) 
@@ -293,8 +304,8 @@ def sendOffer(response, pk):
     notification = Notification(user=application.user, message=msg)
     notification.save()
 
-
     return redirect('/instructor_summary')
+
 
 def rejectApp(response, pk):
     application = Application.objects.get(id=pk)
