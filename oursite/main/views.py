@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -180,6 +180,7 @@ def show_pdf(request, pk):
     application = Application.objects.get(id=pk)
     resume = application.resume
     return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
+
 def accept_offer(request, application_id):
     application = get_object_or_404(Application, id=application_id)
     student = application.user
@@ -193,7 +194,7 @@ def accept_offer(request, application_id):
     application.save()
     course.save()
 
-    return redirect('instructor_summary')
+    return redirect('InstructorSummaryView')
 
 def reject_offer(request, application_id):
     application = get_object_or_404(Application, id=application_id)
@@ -205,4 +206,4 @@ def reject_offer(request, application_id):
     student.save()
     application.save()
 
-    return redirect('instructor_summary')
+    return redirect('InstructorSummaryView')
