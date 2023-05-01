@@ -279,6 +279,13 @@ def sendOffer(response, pk):
     application.offer_flag = True
     application.save()
     student.save()
+
+    course = application.related_course
+    msg = "Your application for " + str(course) + " has been reviewed and professor " + course.professor + " has sent you an offer!"
+    notification = Notification(user=application.user, message=msg)
+    notification.save()
+
+
     return redirect('/instructor_summary')
 
 def rejectApp(response, pk):
@@ -288,4 +295,16 @@ def rejectApp(response, pk):
     application.status = 'Rejected'
     application.save()
     student.save()
+
+    course = application.related_course
+    msg = "Your application for " + str(course) + " has been rejected."
+    notification = Notification(user=application.user, message=msg)
+    notification.save()
+
     return redirect('/instructor_summary')
+
+
+
+   
+
+

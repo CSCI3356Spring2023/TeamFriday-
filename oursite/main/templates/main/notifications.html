@@ -38,8 +38,8 @@
             </thead>
 
           {% if notifications %}
+            {% for n in notifications %}
                   <tr>
-                    {% for n in notifications %}
                         <td style="text-align: center;">
                             {% if n.seen == False %}
                                 <span class="badge badge-light">New</span>
@@ -52,11 +52,14 @@
                             {{n.timestamp}}
                         </td>
                         <td style="text-align: center;">
-                            <a href="/notifications">View</a>
+                          {% if user.is_teacher or user.is_admin %}
+                            <a href="/instructor_summary">View</a>
+                          {% else %}
+                          <a href="/applications">View</a>
+                          {% endif %}
                         </td>
-                    {% endfor %}
                   </tr>
-                  
+              {% endfor %}
               </tbody>
           {% else %}
             <p>You do not have any notifcations.</p>
