@@ -15,6 +15,5 @@ urlpatterns = [
     path("apply/error/",login_required(views.app_error.as_view()),name="apply error"),
     path('accept_offer/<int:application_id>/', views.accept_offer, name='accept_offer'),
     path('reject_offer/<int:application_id>/', views.reject_offer, name='reject_offer'),
-
     
 ]

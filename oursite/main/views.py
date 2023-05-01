@@ -180,7 +180,6 @@ def show_pdf(request, pk):
     application = Application.objects.get(id=pk)
     resume = application.resume
     return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
-
 def accept_offer(request, application_id):
     application = get_object_or_404(Application, id=application_id)
     student = application.user
