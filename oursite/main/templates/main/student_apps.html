@@ -52,7 +52,7 @@
                         <td style="text-align: center;">   
                           {% if app.status == 'Accepted' or app.status == 'Rejected' %}
                             <a href="/instructor_summary" class="btn btn-success disabled">Accept</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a>
-                          {% elif app.status == 'Pending' and app.offer%}
+                          {% elif app.status == 'Pending' and app.offer_flag%}
                             <a href="/applications/accept/{{app.id}}" class="btn btn-success">Accept</a><a href="/applications/reject/{{app.id}}" class="btn btn-success" style="margin-left: 10px;">Decline</a>
                           {% else %}
                               <a href="/instructor_summary" class="btn btn-success disabled">Accept</a><a href="/instructor_summary" class="btn btn-success disabled" style="margin-left: 10px;">Decline</a>

@@ -284,16 +284,31 @@ def accept_offer(request, id):
     course.save()
     application.save()
 
+
+    course = application.related_course
+    msg = str(student) + " has accepted your offer for the " + str(course) + " TA position!"
+    professor = get_object_or_404(User, id=course.id)
+    notification = Notification(user=professor, message=msg)
+    notification.save()
+
+
     return redirect('/applications')
 
 def reject_offer(request, id):
     application = get_object_or_404(Application, id=id)
-    student = application.user
+    student = get_object_or_404(Student, user=application.user)
 
     student.status = 'Available'
     application.status = 'Rejected'
     student.save()
     application.save()
+
+
+    course = application.related_course
+    msg = str(student) + " has rejected your offer for the " + str(course) + " TA position!"
+    professor = get_object_or_404(User, id=course.id)
+    notification = Notification(user=professor, message=msg)
+    notification.save()
 
     return redirect('/applications')
 
