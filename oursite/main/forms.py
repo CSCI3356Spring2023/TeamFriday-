@@ -149,10 +149,6 @@ class CreateApplicationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateApplicationForm, self).__init__(*args, **kwargs)
-    CSCI1101_01 = 'CS1 Section 1'
-    CSCI1101_02 ='CS1 Section 2'
-    
-    COURSE_CHOICES = []
 
     course = forms.ModelChoiceField(label="Please select the course you're applying to", queryset=Course.objects.all())
     taken_prev = forms.ChoiceField(label='Have you taken this course before?', choices= (('yes', 'Yes'), ('no', 'No')))

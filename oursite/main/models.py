@@ -40,16 +40,9 @@ class Admin(models.Model):
 class Application(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
     related_course = models.ForeignKey('Course', on_delete=models.CASCADE, primary_key=False, related_name='course', default=1, blank=True)
-    CSCI1101_01 = 'CS1 Section 1'
-    CSCI1101_02 ='CS1 Section 2'
-    COURSE_CHOICES = [
-        (CSCI1101_01, 'CS1 Section 1'),
-        (CSCI1101_02, 'CS1 Section 2')
-    ]
     course_name = models.CharField(
-        max_length=20,
-        choices=COURSE_CHOICES,
-        default=CSCI1101_01,) # ex)CSCI1101.02 = 11 characters
+        max_length=60, 
+        default='')# ex)CSCI1101.02 = 11 characters
     # In our prototype, this was done as a dropdown, database accessed already
     taken_prev = models.CharField( # Have you taken this course before
         max_length=3,
@@ -77,6 +70,8 @@ class Application(models.Model):
     def __str__(self):
         if self.user.is_student: 
             student = Student.objects.get(user=self.user)
+            course = Course.objects.get(id=self.related_course_id)
+            self.course_name = course.course_code
             return self.course_name[0:8] + ': ' + student.firstname + ' ' + student.lastname
 
         return self.course_name[0:8] + ': Test application'

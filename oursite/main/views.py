@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -272,22 +272,30 @@ def notification_list(response):
     return render(response, "main/notifications.html", context)
 
 
-def accept_offer(request, application_id):
-    application = get_object_or_404(Application, id=application_id)
-    student = application.user
+def accept_offer(request, id):
+    application = get_object_or_404(Application, id=id)
+    student = get_object_or_404(Student, user=application.user)
     course = application.related_course
     student.status = 'Hired'
     application.status = 'Accepted'
     course.filled += 1
 
-def reject_offer(request, application_id):
-    application = get_object_or_404(Application, id=application_id)
+    student.save()
+    course.save()
+    application.save()
+
+    return redirect('/applications')
+
+def reject_offer(request, id):
+    application = get_object_or_404(Application, id=id)
     student = application.user
-    
+
+    student.status = 'Available'
+    application.status = 'Rejected'
     student.save()
     application.save()
 
-    return redirect('/instructor_summary')
+    return redirect('/applications')
 
 
 
