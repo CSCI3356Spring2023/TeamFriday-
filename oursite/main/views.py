@@ -196,14 +196,15 @@ def apply(response, id):
                 student.applications.add(application)
                 student.save()
 
-#	email = self.request.user.email
-#        send_mail(
-#                'Subject: Successfully Applied',
-#                'You have successfully applied to a course. Thanks for using EagleHire!',
-#                'BCEagleHire@gmail.com',
-#                [email],
-#                fail_silently=False,
-#        )
+            email = response.user.email
+            msg =  "You have successfully applied to a TA position for the course: " + str(course) + ". Thanks for using EagleHire!"
+            send_mail(
+                    'EagleHire: Successfully Applied',
+                    msg,
+                    'BCEagleHire@gmail.com',
+                    [email],
+                    fail_silently=False,
+            )
         else:
             return redirect('/apply/error/')
         return redirect('/applications')
@@ -291,6 +292,17 @@ def accept_offer(request, id):
     notification = Notification(user=professor, message=msg)
     notification.save()
 
+    email = professor.email
+    send_mail(
+                'EagleHire: Offer accepted',
+                msg,
+                'BCEagleHire@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
+
+
 
     return redirect('/applications')
 
@@ -310,6 +322,16 @@ def reject_offer(request, id):
     notification = Notification(user=professor, message=msg)
     notification.save()
 
+
+    email = professor.email
+    send_mail(
+                'EagleHire: Offer rejected',
+                msg,
+                'BCEagleHire@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
     return redirect('/applications')
 
 
@@ -327,6 +349,15 @@ def sendOffer(response, pk):
     notification = Notification(user=application.user, message=msg)
     notification.save()
 
+    email = application.user.email
+    send_mail(
+                'EagleHire: Offer received',
+                msg,
+                'BCEagleHire@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
     return redirect('/instructor_summary')
 
 
@@ -342,6 +373,18 @@ def rejectApp(response, pk):
     msg = "Your application for " + str(course) + " has been rejected."
     notification = Notification(user=application.user, message=msg)
     notification.save()
+
+    email = application.user.email
+    send_mail(
+                'EagleHire: Application rejected',
+                msg,
+                'BCEagleHire@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+
+
+
 
     return redirect('/instructor_summary')
 
