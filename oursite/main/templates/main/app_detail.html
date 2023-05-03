@@ -1,5 +1,30 @@
 {% extends "main/base.html" %}
 
+{%block nav%}
+    <div class="nav-links">
+      <ul>
+        <li><a href="/home"><i>Home</i></a></li>
+        {% if user.is_authenticated%} 
+          {% if user.is_admin or user.is_teacher%}
+            <li><a href="/instructor_summary"><i>Applications</i></a></li>
+          {% else%}
+            <li><a href="/applications"><i>Applications</i></a></li>
+          {%endif%}
+        <li>
+          <a href="/notifications">
+          {%if user.notifications == 0%}
+            <i>Notifications</i>
+          {%else%}
+            <i>Notifications </i><span class="badge badge-light">{{user.notifications}}</span>
+          {%endif%}
+          </a>
+        </li>
+        <li><a href="/logout"><i>Logout</i></a></li>
+        {%endif%}
+      </ul>
+    </div>
+{%endblock%}
+
 {% block content %}
   <h1>{{ application }}</h1>
 

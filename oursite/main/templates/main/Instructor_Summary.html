@@ -34,7 +34,8 @@
 {%block content%}
 <h1 class="display-4">Instructor Course Summary</h1> 
 {% if user.is_authenticated %}
-    <p>Logged in as {{user}}</p>
+    <p>Logged in as {{user}}.</p>
+    <p>This summary page displays the applications for your courses and lets you assess candidates to make a final decision.</p>
     <a href="/create/course" class="btn btn-success">New course</a>
     <a href="/home/" class="btn btn-success">Home</a>
     <h2>{{course.course_code}}</h2>
