@@ -5,7 +5,7 @@
 {%block nav%}
     <div class="nav-links">
       <ul>
-        <li><a href="/home"><i>Home</i></a></li>
+        <li class="active"><a href="/home"><i>Home</i></a></li>
         {% if user.is_authenticated%} 
           {% if user.is_admin or user.is_teacher%}
             <li><a href="/instructor_summary"><i>Applications</i></a></li>

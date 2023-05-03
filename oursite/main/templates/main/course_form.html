@@ -2,7 +2,7 @@
 
 {% load crispy_forms_tags %}
 
-{%block title%}AddCourse{%endblock%}
+{%block title%}Update course{%endblock%}
 
 {%block nav%}
     <div class="nav-links">
@@ -14,7 +14,15 @@
           {% else%}
             <li><a href="/applications"><i>Applications</i></a></li>
           {%endif%}
-        <li><a href="/notifications"><i>Notifications</i></a></li>
+          <li>
+            <a href="/notifications">
+            {%if user.notifications == 0%}
+              <i>Notifications</i>
+            {%else%}
+              <i>Notifications </i><span class="badge badge-light">{{user.notifications}}</span>
+            {%endif%}
+            </a>
+          </li>
         <li><a href="/logout"><i>Logout</i></a></li>
         {%endif%}
     </ul>
@@ -24,7 +32,7 @@
 
 
 {%block content%}
-<h3>Add Course</h3>
+<h3>Update course information</h3>
 {% if user.is_authenticated%}
     <form method="post" novalidate>
         {% csrf_token %}

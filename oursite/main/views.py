@@ -297,15 +297,17 @@ def notification_list(response):
 def accept_offer(request, id):
     application = get_object_or_404(Application, id=id)
     student = get_object_or_404(Student, user=application.user)
+    semester = get_object_or_404(Semester, current=True)
     course = application.related_course
     student.status = 'Hired'
     application.status = 'Accepted'
     course.filled += 1
-
+    semester.total_filled += 1
+    
     student.save()
     course.save()
     application.save()
-
+    semester.save()
 
     course = application.related_course
     msg = str(student) + " has accepted your offer for the " + str(course) + " TA position!"
