@@ -14,7 +14,15 @@
           {% else%}
             <li><a href="/applications"><i>Applications</i></a></li>
           {%endif%}
-        <li><a href="/notifications"><i>Notifications</i></a></li>
+          <li>
+            <a href="/notifications">
+            {%if user.notifications == 0%}
+              <i>Notifications</i>
+            {%else%}
+              <i>Notifications </i><span class="badge badge-light">{{user.notifications}}</span>
+            {%endif%}
+            </a>
+          </li>
         <li><a href="/logout"><i>Logout</i></a></li>
         {%endif%}
       </ul>
@@ -33,7 +41,7 @@
                 <th scope="col" class="col-sm-1"><h3></h3></th>
                 <th scope="col" class="col-sm-4"><h3>Message</h3></th>
                 <th scope="col" class="col-sm-1"><h3>Time</h3></th>
-                <th scope="col" class="col-sm-1"><h3>Action</h3></th>
+                <th scope="col" class="col-sm-2"><h3>Action</h3></th>
               </tr>
             </thead>
 
@@ -43,6 +51,8 @@
                         <td style="text-align: center;">
                             {% if n.seen == False %}
                                 <span class="badge badge-light">New</span>
+                            {%else%}
+                                <span class="badge badge-danger">Seen</span>
                             {%endif%}
                         </td>
                         <td style="text-align: center;">
@@ -53,9 +63,10 @@
                         </td>
                         <td style="text-align: center;">
                           {% if user.is_teacher or user.is_admin %}
-                            <a href="/instructor_summary">View</a>
+                            <p><a href="/instructor_summary" class="btn btn-success">View</a><a href="/seen/{{n.id}}" class="btn btn-success" style="margin-left: 10px;">Mark seen</a></p>
                           {% else %}
-                          <a href="/applications">View</a>
+                            <a href="/applications" class="btn btn-success">View</a>
+                            <a href="/seen{{n.id}}" class="btn btn-success">Mark seen</a>
                           {% endif %}
                         </td>
                   </tr>

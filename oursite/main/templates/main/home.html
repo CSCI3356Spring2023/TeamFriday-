@@ -12,7 +12,15 @@
           {% else%}
             <li><a href="/applications"><i>Applications</i></a></li>
           {%endif%}
-        <li><a href="/notifications"><i>Notifications</i></a></li>
+        <li>
+          <a href="/notifications">
+          {%if user.notifications == 0%}
+            <i>Notifications</i>
+          {%else%}
+            <i>Notifications </i><span class="badge badge-light">{{user.notifications}}</span>
+          {%endif%}
+          </a>
+        </li>
         <li><a href="/logout"><i>Logout</i></a></li>
         {%endif%}
       </ul>

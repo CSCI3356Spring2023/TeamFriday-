@@ -18,7 +18,7 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     email = models.EmailField(('Email Address'), unique=True)
-
+    notifications = models.IntegerField(default=0)
     ##a user can have multiple accounts type
     username = models.CharField(max_length=20,unique=False,default='')
 
@@ -207,5 +207,5 @@ class Notification(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=False)
     timestamp = models.TimeField(auto_now_add=True)
-    message = models.CharField(max_length=40)
+    message = models.TextField(max_length=2000)
     seen = models.BooleanField(default=False)

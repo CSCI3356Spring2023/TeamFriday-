@@ -98,6 +98,8 @@ def home(response):
 def course_list(request):
     template_name = 'main/home.html'
     courses = Course.objects.all()
+    user = request.user
+    getNotifications(user)
     for course in courses:
         if course.filled == course.positions:
             course.open = False
@@ -200,6 +202,13 @@ def apply(response, id):
                 student.applications.add(application)
                 student.save()
 
+            # Notification
+            msg = str(user) + " has applied for the TA position for the " + str(course) + " course!"
+            professor = course.user
+            notification = Notification(user=professor, message=msg)
+            notification.save()
+
+            #Email
             email = response.user.email
             msg =  "You have successfully applied to a TA position for the course: " + str(course) + ". Thanks for using EagleHire!"
             send_mail(
@@ -219,6 +228,7 @@ def apply(response, id):
 
 def InstructorSummaryView(response):
     context = {}
+    getNotifications(response.user)
     if response.method == "GET" :
         courses = Course.objects.filter(user = response.user)
         apps = []
@@ -239,7 +249,7 @@ def InstructorSummaryView(response):
 
 def student_apps(response):
     context = {}
-
+    getNotifications(response.user)
     if response.method == "GET":
         user = response.user
         student = Student.objects.get(user=user)
@@ -266,7 +276,7 @@ def show_pdf(request, pk):
     return FileResponse(open(resume.path, 'rb'), content_type='application/pdf')
 def notification_list(response):
     context = {}
-
+    getNotifications(response.user)
     if response.method == "GET":
         user = response.user
         notifications = Notification.objects.filter(user=user)
@@ -387,11 +397,27 @@ def rejectApp(response, pk):
                 fail_silently=False,
             )
 
-
-
-
     return redirect('/instructor_summary')
 
+
+def getNotifications(user):
+    try:
+        notifications = Notification.objects.filter(user=user)
+        total = 0
+        for n in notifications:
+            if n.seen == False:
+                total += 1
+        user.notifications = total
+    except ObjectDoesNotExist:
+        user.notifications = 0
+
+    return True
+
+def seen(response, id):
+    notification = get_object_or_404(Notification, id=id)
+    notification.seen = True
+    notification.save()
+    return redirect('/notifications')
 
 
    

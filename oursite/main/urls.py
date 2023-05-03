@@ -21,5 +21,6 @@ urlpatterns = [
     path("applications/", views.student_apps, name='Student applications'),
     path("applications/accept/<int:id>/", views.accept_offer, name="accept_offer"),
     path("applications/reject/<int:id>/", views.reject_offer, name="reject_offer"),
-    path("notifications/", views.notification_list, name='notifications')
+    path("notifications/", views.notification_list, name='notifications'),
+    path("seen/<int:id>", views.seen, name='mark as seen'),
 ]
