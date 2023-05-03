@@ -3,9 +3,9 @@
 {% block content %}
   <h1>{{ application }}</h1>
 
-  <p><strong>Student:</strong> <a href="">{{ application.user }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Previous Experience:</strong> {{ application.taken_prev }} {{ application.prev_desc }}</p>
-  <p><strong>Cover Letter:</strong> {{ application.coverl_desc }}</p>
-  <p><strong>Resume:</strong> <a href="resume/{{application.id}}" target="_blank" rel="noopener noreferrer">{{application.resume}}</a></p>
+  <p><h4><strong>Student:</strong></h4>{{ application.user }}</p> <!-- author detail link not yet defined -->
+  <p><h4><strong>Previous Experience:</strong></h4>{{ application.taken_prev }} {{ application.prev_desc }}</p>
+  <p><h4><strong>Cover Letter:</strong></h4>{{ application.coverl_desc }}</p>
+  <p><h4><strong>Resume:</strong></h4><a href="resume/{{application.id}}" target="_blank" rel="noopener noreferrer">{{application.resume}}</a></p>
 
 {% endblock %}
