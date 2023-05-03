@@ -71,7 +71,7 @@
                           <td style="text-align: center;">{{course.office_hours}} per week</td>
                           <td style="text-align: center;">
                             {%if course.open%}
-                            <a href="/instructor_summary" class="btn btn-success">View summary</a></td>
+                            <a href="/home/{{course.id}}" class="btn btn-success">View summary</a></td>
                             {%else%}
                             <a href="/instructor_summary" class="btn btn-success disabled">Closed</a></td>
                             {%endif%}
