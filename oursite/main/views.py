@@ -6,7 +6,7 @@ from django.views.generic.base import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, FileResponse
 from django.contrib.auth import login, authenticate
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.core.exceptions import ObjectDoesNotExist
 import os
 
@@ -155,6 +155,13 @@ class addCourse(CreateView):
 	)
 		
         return redirect('/home')
+    
+class EditCourse(UpdateView):
+    model = Course
+    fields = ('department', 'name', 'number', 'section', 'days', 'start_time', 'end_time', 'disc_flag', 'disc_section', 'office_hours', 'graded_hw', 'positions', 'desc')
+
+    success_url = "/home"
+
 
 class CreateApplication(CreateView):
     model = Application
