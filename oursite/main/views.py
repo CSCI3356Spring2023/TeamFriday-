@@ -98,6 +98,10 @@ def home(response):
 def course_list(request):
     template_name = 'main/home.html'
     courses = Course.objects.all()
+    for course in courses:
+        if course.filled == course.positions:
+            course.open = False
+            course.save()
     try: 
         semester = Semester.objects.get(current=True)
     except ObjectDoesNotExist:

@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
 from multiselectfield import MultiSelectField
 
 # Create your models here.
@@ -106,11 +106,16 @@ class Course(models.Model):
     disc_section = models.CharField(max_length=30, blank=True)  # Make a new table?
     start_time = models.TimeField(default=dt.time(00, 00))
     end_time = models.TimeField()
-    positions = models.CharField(max_length=1, choices=HOURS, default='2')
+    positions = models.IntegerField(
+        default=1,
+        validators=[MaxValueValidator(5), MinValueValidator(1)]
+     )
     filled = models.IntegerField(default='0')
     graded_hw = models.CharField(max_length=3, choices= CHOICE, default='no')
     office_hours = models.CharField(max_length=1, choices=HOURS, default='2')
     desc = models.TextField(max_length=2000)
+    open = models.BooleanField(default=True)
+    
     def __str__(self):
 	    return str(self.course_code)  
 
