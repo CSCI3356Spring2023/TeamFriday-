@@ -2,7 +2,7 @@
 
 {% load crispy_forms_tags %}
 
-{%block title%}Update course{%endblock%}
+{%block title%}Edit course{%endblock%}
 
 {%block nav%}
     <div class="nav-links">
@@ -32,7 +32,7 @@
 
 
 {%block content%}
-<h3>Update course information</h3>
+<h3>Edit course information</h3>
 {% if user.is_authenticated%}
     <form method="post" novalidate>
         {% csrf_token %}
