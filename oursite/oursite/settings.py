@@ -27,9 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8)yc7owg&77$m3ihvmemd3u62yy0b$4iq_b(y+v#(qjulj5i3+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-6130.up.railway.app'
+]
 
 
 # Application definition
