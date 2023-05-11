@@ -1,0 +1,132 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body { 
+    /* background: url(https://images.unsplash.com/photo-1674420628423-bf7a338af32d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80) no-repeat center center fixed;  */
+    background-color: #342f30;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.btn{
+  color: #fff;
+  background-color: #aa0000;
+  border-color: #aa0000;
+}
+
+.btn-success.disabled{
+  color: #fff;
+  background-color: #aa0000;
+  border-color: #aa0000;
+}
+
+.btn:hover{
+  background-color: #EC7979;
+  border-color: #EC7979;
+}
+
+.logo-image{
+  width: 50px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.nav {
+  height: 60px;
+  width: 100%;
+  background-color:#73131d;
+  position: relative;
+}
+  
+  .nav > .nav-header {
+    display: inline;
+  }
+  
+  .nav > .nav-header > .nav-title  {
+    display: inline-block;
+    font-size: 30px;
+    color: #BC9B6A;
+    font-weight: 550;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    margin-top: -2px;
+  }
+
+  .nav > .nav-btn {
+    display: none;
+  }
+  
+  .nav > .nav-links {
+    display: inline;
+    float: right;
+    font-size: 18px;
+  }
+  .nav > .nav-links > ul li a{
+    display: block;
+    padding: 0 8px;
+    color: #fff;
+    line-height: 60px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .nav > .nav-links > ul{
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+    position: relative;
+    left: 30px;
+    bottom: 5px;
+  }
+  .nav > .nav-links > ul li{
+    display: inline-block;
+    background-color: #73131d;
+    
+  }
+
+  .nav > .nav-links > ul li:hover{
+      background-color: #f9a03a;
+  }
+  
+  .nav > #nav-check {
+    display: none;
+  }
+
+ /* .nav .nav-links ul a.icon{
+ margin-left: 80px;
+ margin-right: 10px;
+ } */
+
+ .nav .nav-links ul a i{
+    /* background-color: #73131d;
+    border-radius: 70px; */
+    padding: 7px;
+    margin-left: 5px;
+ }
+
+.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+}
+
+.course-summary{
+  position: relative;
+  top: 20px;
+}
+
+th {
+  text-align: center;
+}
+
+.logo-link { color: inherit; }
+
+.logo-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
