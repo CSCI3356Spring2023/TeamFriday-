@@ -202,6 +202,9 @@ def apply(response, id):
             application = Application(course_name = course.course_code, user=user)
             resume = response.FILES['resume']
             application.resume = resume
+            application.taken_prev = response.POST['taken_prev']
+            application.prev_desc = response.POST['prev_desc']
+            application.coverl_desc = response.POST['coverl_desc']
             application.save()
             course.applications.add(application)
             course.save()
