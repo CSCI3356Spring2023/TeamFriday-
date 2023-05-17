@@ -1,7 +1,7 @@
 # EagleHire 
 ## by TeamFriday :)
 
-![image](https://images.squarespace-cdn.com/content/v1/5b02fe5ca9e028b65539cd7e/1531428740339-XJ3NOQLSMM8YGX3PX95O/02+Boston+College.jpg?format=2500w)
+![image](https://github.com/CSCI3356Spring2023/TeamFriday-/assets/87817813/41b2122b-a180-48b7-9fdb-3eb99b7f564c)
 
 Introducing *EagleHire*, the newest solution for Boston College's Computer Science department. With faculty currently relying on Google Forms and email to hire TAs, there's an urgent need for a better and more efficient way to connect faculty and students. 
 
